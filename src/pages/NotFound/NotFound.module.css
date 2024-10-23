@@ -92,7 +92,7 @@
 
 @media (max-width: 424px) {
   .backgorund {
-    background: url("../../images/background-login-phone.png")
+    background: url("../../images/background-login&register-phone.png")
       var(--bakgroundColor);
     background-position: center;
     background-repeat: no-repeat;

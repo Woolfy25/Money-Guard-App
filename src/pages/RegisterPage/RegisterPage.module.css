@@ -1,0 +1,212 @@
+:root {
+  --bakgroundColor: #101010;
+  --pane-padding: 5px 42px;
+  --input-border: rgba(255, 255, 255, 0.4);
+  --white-60: rgba(255, 255, 255, 0.6);
+}
+
+.backgorund {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background: url("../../images/background-register-desktop.png")
+    var(--bakgroundColor);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 100vh;
+  overflow: auto;
+}
+
+.form {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 52px;
+  width: 34rem;
+  padding: 80px 62px;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+}
+
+.logo {
+  display: flex;
+  width: 182px;
+}
+
+.divInput {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.input {
+  width: 25rem;
+  border-bottom: solid 1px var(--input-border);
+  background: transparent;
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+  font-size: 18px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 54px;
+}
+
+.divButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+  width: 24px;
+  height: 24px;
+}
+
+.toggleIcon {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  transition: all 500ms ease;
+}
+
+.inputPasswordNormal {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  color: #aaa;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+
+.inputPasswordReadable {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  color: #aaa;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+
+.toggleIcon:hover .inputPasswordNormal,
+.toggleIcon:focus .inputPasswordNormal {
+  color: #ffffff;
+  scale: 0.95;
+}
+
+.toggleIcon:hover .inputPasswordReadable,
+.toggleIcon:focus .inputPasswordReadable {
+  color: #ffffff;
+  scale: 0.95;
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .backgorund {
+    background: url("../../images/background-register-tablet.png")
+      var(--bakgroundColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .form {
+    width: 26rem;
+    scale: 0.9;
+    padding: 40px 32px;
+  }
+
+  .input {
+    width: 20rem;
+    padding-left: 45px;
+  }
+
+  .toggleIcon {
+    right: 6px;
+  }
+
+  .inputPasswordNormal {
+    right: 6px;
+  }
+
+  .inputPasswordReadable {
+    right: 6px;
+  }
+}
+
+@media (max-width: 424px) {
+  .backgorund {
+    background: url("../../images/background-login&register-phone.png")
+      var(--bakgroundColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .form {
+    margin: 0;
+    flex: 1 1 auto;
+    width: 100%;
+    /* scale: 0.8; */
+    padding: 80px 20px;
+    border: none;
+    border-radius: 0%;
+    /* gap: 52px; */
+  }
+
+  .logo {
+    display: flex;
+    width: 128px;
+  }
+
+  .input {
+    width: 17.5rem;
+    padding-left: 40px;
+    font-size: 14px;
+  }
+
+  .inputIcon {
+    left: 6px;
+  }
+
+  .toggleIcon {
+    right: 4px;
+  }
+
+  .inputPasswordNormal {
+    right: 4px;
+  }
+
+  .inputPasswordReadable {
+    right: 4px;
+  }
+}

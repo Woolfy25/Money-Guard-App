@@ -87,7 +87,7 @@
   z-index: 5;
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 8px;
   transform: translateY(-50%);
   transition: all 500ms ease;
 }
@@ -96,7 +96,7 @@
   z-index: 3;
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 8px;
   transform: translateY(-50%);
   color: #aaa;
   width: 24px;
@@ -109,7 +109,7 @@
   z-index: 3;
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 8px;
   transform: translateY(-50%);
   color: #aaa;
   width: 24px;
@@ -128,4 +128,85 @@
 .toggleIcon:focus .inputPasswordReadable {
   color: #ffffff;
   scale: 0.95;
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .backgorund {
+    background: url("../../images/background-login-tablet.png")
+      var(--bakgroundColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .form {
+    width: 26rem;
+    scale: 0.9;
+    padding: 40px 32px;
+  }
+
+  .input {
+    width: 20rem;
+    padding-left: 45px;
+  }
+
+  .toggleIcon {
+    right: 6px;
+  }
+
+  .inputPasswordNormal {
+    right: 6px;
+  }
+
+  .inputPasswordReadable {
+    right: 6px;
+  }
+}
+
+@media (max-width: 424px) {
+  .backgorund {
+    background: url("../../images/background-login-phone.png")
+      var(--bakgroundColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .form {
+    margin: 0;
+    flex: 1 1 auto;
+    width: 100%;
+    /* scale: 0.8; */
+    padding: 80px 20px;
+    border: none;
+    border-radius: 0%;
+    /* gap: 52px; */
+  }
+
+  .logo {
+    display: flex;
+    width: 128px;
+  }
+
+  .input {
+    width: 17.5rem;
+    padding-left: 40px;
+    font-size: 14px;
+  }
+
+  .inputIcon {
+    left: 6px;
+  }
+
+  .toggleIcon {
+    right: 4px;
+  }
+
+  .inputPasswordNormal {
+    right: 4px;
+  }
+
+  .inputPasswordReadable {
+    right: 4px;
+  }
 }

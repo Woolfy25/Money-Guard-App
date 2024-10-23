@@ -1,0 +1,108 @@
+:root {
+  --bakgroundColor: #101010;
+  --white-60: rgba(255, 255, 255, 0.6);
+}
+
+.backgorund {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background: url("../../images/backgorund-login-desktop.png")
+    var(--bakgroundColor);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 100vh;
+  overflow: auto;
+}
+
+.container {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 60px;
+  width: 34rem;
+  padding: 80px 62px;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+}
+
+.logo {
+  display: flex;
+  width: 182px;
+}
+
+.notDoundContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.notFound {
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--white-60);
+  font-weight: 500;
+}
+
+.return {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: var(--white-60);
+  border: 2px solid var(--white-60);
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.redirect {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--white-60);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .backgorund {
+    background: url("../../images/background-login-tablet.png")
+      var(--bakgroundColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .container {
+    text-align: center;
+    width: 24rem;
+    scale: 0.9;
+    padding: 40px 32px;
+  }
+}
+
+@media (max-width: 424px) {
+  .backgorund {
+    background: url("../../images/background-login-phone.png")
+      var(--bakgroundColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .container {
+    text-align: center;
+    width: 20rem;
+    scale: 0.8;
+    padding: 20px 22px;
+  }
+}

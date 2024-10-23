@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import zxcvbn from "zxcvbn";
 // import { useFormik } from "formik";
 import MainButton from "../../components/Buttons/MainButton";
@@ -15,6 +16,7 @@ import css from "./RegisterPage.module.css";
 const RegisterForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const testResult = zxcvbn(password);
 
   const togglePasswordVisibility = () => {
@@ -150,7 +152,13 @@ const RegisterForm = () => {
         </div>
         <div className={css.divButtons}>
           <MainButton type="Submit" text="REGISTER" />
-          <SecondaryButton type="Button" text="LOG IN" />
+          <SecondaryButton
+            type="Button"
+            text="LOG IN"
+            onClick={() => {
+              navigate("/login");
+            }}
+          />
         </div>
       </form>
     </div>

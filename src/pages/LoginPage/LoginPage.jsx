@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import { useFormik } from "formik";
 import MainButton from "../../components/Buttons/MainButton";
 import SecondaryButton from "../../components/Buttons/SecondaryButton";
@@ -12,6 +13,7 @@ import css from "./LoginPage.module.css";
 
 const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -56,7 +58,13 @@ const LoginForm = () => {
         </div>
         <div className={css.divButtons}>
           <MainButton type="Submit" text="LOG IN" />
-          <SecondaryButton type="Button" text="REGISTER" />
+          <SecondaryButton
+            type="Button"
+            text="REGISTER"
+            onClick={() => {
+              navigate("/register");
+            }}
+          />
         </div>
       </form>
     </div>

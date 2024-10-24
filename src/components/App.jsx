@@ -19,9 +19,7 @@ function App() {
     <div className="App">
       <Suspense>
         <Routes>
-          <Route path="/" element={<LazyDashboard />}>
-            <Route path="currency" element={<LazyCurency />}></Route>
-          </Route>
+          <Route path="/" element={<LazyDashboard />}></Route>
           <Route path="/login" element={<LazyLogin />}></Route>
           <Route path="/register" element={<LazyRegister />}></Route>
           <Route path="*" element={<LazyNotFound />}></Route>

@@ -1,0 +1,79 @@
+.container {
+  flex: 0 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table {
+  /* flex: 0 1 auto; */
+  max-width: 715px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end; */
+  margin: 0px 16px;
+  margin-top: 46px;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  /* display: flex;
+  flex-direction: column;
+  width: 100%; */
+  border: 1px solid #ddd;
+}
+
+.tableHead,
+.tableRow {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  color: #fbfbfb;
+}
+
+.tableCell {
+  flex: 1; /* Ensures all cells take up equal space */
+  text-align: left;
+  overflow: auto;
+}
+
+.sum {
+  text-align: center;
+}
+
+.comment {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.test {
+  width: 80px;
+}
+
+/* .tableHead {
+  border-radius: 8px;
+  background: rgba(82, 59, 126, 0.6);
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+
+  color: #fbfbfb;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 0px;
+  padding-left: 20px;
+  padding-right: 130px;
+} */
+
+/* .tableHead tr {
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* .table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+} */

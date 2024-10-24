@@ -19,15 +19,26 @@
   overflow: auto;
 }
 
+.layoutContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.sideBarContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 1024px) and (min-width: 769px) {
   .dashboardContainer {
-    flex-direction: row;
+    /* flex-direction: row; */
   }
 }
 
 @media (max-width: 768px) and (min-width: 425px) {
   .dashboardContainer {
-    flex-direction: row;
+    /* flex-direction: row; */
   }
 }
 

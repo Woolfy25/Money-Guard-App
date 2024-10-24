@@ -18,3 +18,12 @@
   background-size: cover;
   overflow: auto;
 }
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .dashboardContainer {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 424px) {
+}

@@ -23,9 +23,11 @@
 
 .navigationContainer {
   display: flex;
+  width: 100%;
   flex-direction: row;
   align-items: center;
   gap: 20px;
+  cursor: pointer;
 }
 
 .title {
@@ -36,10 +38,13 @@
 }
 
 .svgs {
-  width: 22px;
-  height: 22px;
-  color: white;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
   opacity: 0.4;
+
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 2px;
 }
 
 .balanceContainer {
@@ -70,26 +75,68 @@
   font-weight: 700;
 }
 
-@media (max-width: 768px) and (min-width: 425px) {
+.navigationContainerCurrency {
+  display: none;
+  cursor: pointer;
+}
+
+.navigationContainer:hover .svgs,
+.navigationContainer:focus .svgs {
+  filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  color: white;
+  opacity: 1;
+  background-color: #734aef;
+}
+
+.navigationContainerCurrency:hover .svgs,
+.navigationContainerCurrency:focus .svgs {
+  filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  color: white;
+  opacity: 1;
+  background-color: #734aef;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
   .container {
     max-width: 368px;
-    border-right: none;
+    border: none;
   }
 
   .navigation {
     margin-left: 32px;
   }
+}
 
-  .balanceContainer {
-    width: 100%;
-    max-width: 20rem;
-    border-radius: 8px;
+@media (max-width: 768px) and (min-width: 425px) {
+  .container {
+    max-width: 100%;
+    border-right: none;
+    gap: 12px;
+  }
 
-    margin-left: 32px;
-    padding-left: 40px;
-    padding-top: 8px;
-    padding-bottom: 11px;
-    margin-bottom: 20px;
+  .navigation {
+    padding-top: 12px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .svgs {
+    width: 44px;
+    height: 44px;
+
+    padding: 4px;
+
+    border-radius: 6px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .navigationContainerCurrency {
+    display: flex;
   }
 }
 

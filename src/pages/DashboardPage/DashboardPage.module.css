@@ -19,6 +19,12 @@
   overflow: auto;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .dashboardContainer {
+    flex-direction: row;
+  }
+}
+
 @media (max-width: 768px) and (min-width: 425px) {
   .dashboardContainer {
     flex-direction: row;

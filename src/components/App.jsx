@@ -12,6 +12,7 @@ const LazyDashboard = lazy(() =>
 const LazyLogin = lazy(() => import("../pages/LoginPage/LoginPage"));
 const LazyRegister = lazy(() => import("../pages/RegisterPage/RegisterPage"));
 const LazyNotFound = lazy(() => import("../pages/NotFound/NotFound"));
+const LazyCurency = lazy(() => import("../components/Currency/Currency"));
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Suspense>
         <Routes>
           <Route path="/" element={<LazyDashboard />}>
-            <Route></Route>
+            <Route path="currency" element={<LazyCurency />}></Route>
           </Route>
           <Route path="/login" element={<LazyLogin />}></Route>
           <Route path="/register" element={<LazyRegister />}></Route>

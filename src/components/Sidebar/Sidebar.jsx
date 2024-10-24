@@ -2,7 +2,8 @@ import React from "react";
 import css from "./Sidebar.module.css";
 
 import { FaHouse } from "react-icons/fa6";
-import { TfiStatsUp } from "react-icons/tfi";
+import { ImStatsDots } from "react-icons/im";
+import { LuDollarSign } from "react-icons/lu";
 
 const Sidebar = () => {
   return (
@@ -13,8 +14,11 @@ const Sidebar = () => {
           <p className={css.title}>Home</p>
         </div>
         <div className={css.navigationContainer}>
-          <TfiStatsUp className={css.svgs} />
+          <ImStatsDots className={css.svgs} />
           <p className={css.title}>Statistics</p>
+        </div>
+        <div className={css.navigationContainerCurrency}>
+          <LuDollarSign className={css.svgs} />
         </div>
       </div>
       <div className={css.balanceContainer}>

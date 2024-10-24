@@ -59,3 +59,42 @@
   width: 100%;
   height: 240px;
 }
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    scale: 0.7;
+  }
+
+  .styledTable {
+    margin-bottom: 0;
+  }
+
+  .styledTable thead {
+    height: 48px;
+  }
+
+  .styledTable td {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 24px;
+    padding-top: 8px;
+  }
+
+  .chart {
+    padding-left: 0;
+    padding-bottom: 0;
+    height: 191px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .container {
+    display: none;
+  }
+}
+
+@media (max-width: 424px) {
+  .container {
+    display: none;
+  }
+}

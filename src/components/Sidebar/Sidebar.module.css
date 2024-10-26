@@ -101,6 +101,7 @@
   .container {
     max-width: none;
     border: none;
+    width: 60%;
   }
 
   .navigation {

@@ -18,7 +18,8 @@
   table-layout: fixed;
   font-size: 20px;
   overflow: auto;
-  max-height: 425px;
+  /* max-height: 425px; */
+  height: 425px;
 }
 
 .tableHead,
@@ -164,8 +165,14 @@
   }
 
   .table {
-    max-width: 704px;
+    height: 360px;
+    max-width: none;
     margin: 0;
+    margin: 0px 20px;
     margin-top: 20px;
+  }
+
+  .addButton {
+    position: fixed;
   }
 }

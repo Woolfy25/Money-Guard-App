@@ -47,7 +47,8 @@
 @media (max-width: 1024px) and (min-width: 769px) {
   .container {
     max-width: none;
-    width: calc(50% - 60px);
+    width: 40%;
+    /* width: calc(50% - 10px); */
     border: none;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

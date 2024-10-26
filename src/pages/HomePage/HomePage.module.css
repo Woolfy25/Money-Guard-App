@@ -242,4 +242,26 @@
     font-weight: 400;
     padding: 4px 8px;
   }
+
+  /* .container {
+    display: none;
+  } */
+}
+
+@media (max-width: 424px) {
+  /* .table {
+    max-width: none;
+    margin: 0px 16px;
+    margin-top: 0;
+    font-size: 20px;
+    height: 450px;
+  }
+  .addButton {
+    right: 20px;
+    position: fixed;
+  } */
+
+  .container {
+    display: none;
+  }
 }

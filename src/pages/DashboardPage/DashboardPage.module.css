@@ -71,4 +71,12 @@
 }
 
 @media (max-width: 424px) {
+  .dashboardContainer {
+    height: 100vh;
+  }
+
+  .layoutContainer {
+    justify-content: center;
+    flex-direction: column;
+  }
 }

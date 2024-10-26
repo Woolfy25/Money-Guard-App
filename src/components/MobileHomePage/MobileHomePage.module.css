@@ -1,0 +1,138 @@
+.container {
+  flex: 0 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table {
+  flex: 0 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+  overflow: auto;
+  height: 450px;
+  gap: 10px;
+}
+
+.tableRow {
+  background: rgba(74, 86, 226, 0.2);
+  flex: 0 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+}
+
+.tableRow:nth-child(even) {
+  border-left: 4px solid #ff868d;
+}
+
+.tableRow:nth-child(odd) {
+  border-left: 4px solid #ffb627;
+}
+
+.tableCell {
+  flex: 0 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  height: 48px;
+}
+
+.tableCell:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+}
+
+.tableTitle {
+  color: #fbfbfb;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tableElement {
+  color: #fbfbfb;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.sum {
+  font-weight: 600;
+}
+
+.tableRow:nth-child(even) .sum {
+  color: #ff868d;
+}
+
+.tableRow:nth-child(odd) .sum {
+  color: #ffb627;
+}
+
+.delete {
+  color: #fbfbfb;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  transition: all 750ms ease;
+  cursor: pointer;
+}
+
+.delete:hover,
+.delete:focus {
+  scale: 0.96;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #7000ff -16.42%, #9e40ba 97.04%, #ffc727 150.71%)
+  );
+}
+
+.svg {
+  color: #fbfbfb;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.svg:hover,
+.svg:focus {
+  scale: 0.9;
+}
+
+.addButton {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+}
+
+.svgButton {
+  width: 34px;
+  height: 34px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.addButton:hover .svgButton,
+.addButton:focus .svgButton {
+  transform: rotate(90deg) scale(0.9);
+}

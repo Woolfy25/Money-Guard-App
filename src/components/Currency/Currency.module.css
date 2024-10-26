@@ -77,11 +77,52 @@
 
 @media (max-width: 768px) and (min-width: 425px) {
   .container {
+    width: 100%;
+    border: none;
+    max-width: none;
+  }
+
+  .chart {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* DISPLAY NONE CURRENCY */
+  .container {
     display: none;
   }
 }
 
 @media (max-width: 424px) {
+  .container {
+    border: none;
+    width: 100%;
+    max-width: none;
+  }
+
+  .styledTable {
+    margin-bottom: 0;
+  }
+
+  .styledTable thead {
+    height: 50px;
+  }
+
+  .styledTable td {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 24px;
+  }
+
+  .chart {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 200px;
+  }
+
+  /* DISPLAY NONE CURRENCY */
   .container {
     display: none;
   }

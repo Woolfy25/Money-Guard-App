@@ -6,21 +6,18 @@
 }
 
 .table {
-  /* flex: 0 1 auto; */
+  flex: 0 1 auto;
   max-width: 715px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-end; */
   margin: 0px 16px;
   margin-top: 46px;
   border-collapse: collapse;
   table-layout: fixed;
-
-  /* display: flex;
-  flex-direction: column;
-  width: 100%; */
-  border: 1px solid #ddd;
+  font-size: 20px;
+  overflow: auto;
+  max-height: 425px;
 }
 
 .tableHead,
@@ -28,52 +25,118 @@
   display: flex;
   justify-content: space-evenly;
   padding: 12px;
-  border-bottom: 1px solid #ddd;
   color: #fbfbfb;
 }
 
-.tableCell {
-  flex: 1; /* Ensures all cells take up equal space */
-  text-align: left;
-  overflow: auto;
+.tableRow:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
 }
 
-.sum {
-  text-align: center;
-}
-
-.comment {
-  max-width: 120px;
-  white-space: nowrap;
-  overflow: auto;
-}
-
-.test {
-  width: 80px;
-}
-
-/* .tableHead {
+.tableHead {
   border-radius: 8px;
   background: rgba(82, 59, 126, 0.6);
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
+}
 
+.table .tableCell {
+  color: #fbfbfb;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.tableHead .tableCell {
   color: #fbfbfb;
   font-size: 16px;
   font-weight: 600;
-  padding: 16px 0px;
-  padding-left: 20px;
-  padding-right: 130px;
-} */
+}
 
-/* .tableHead tr {
+.tableCell {
   display: flex;
-  justify-content: space-between;
-} */
+  align-items: center;
+  flex: 1;
+  min-height: calc(2 * 1.2em);
+  line-height: 1.2em;
+}
 
-/* .table th,
-.table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-} */
+.tableRow:nth-child(even) .sum {
+  color: #ff868d;
+}
+
+.tableRow:nth-child(odd) .sum {
+  color: #ffb627;
+}
+
+.sumTitle {
+  font-size: 16px;
+  justify-content: center;
+}
+
+.table .sum {
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.type {
+  padding-left: 15px;
+  margin-right: -15px;
+  /* justify-content: center; */
+}
+
+.action {
+  width: 92px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.svg {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.svg:hover,
+.svg:focus {
+  scale: 0.9;
+}
+
+.delete {
+  color: #fbfbfb;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  transition: all 750ms ease;
+  cursor: pointer;
+}
+
+.delete:hover,
+.delete:focus {
+  scale: 0.96;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #7000ff -16.42%, #9e40ba 97.04%, #ffc727 150.71%)
+  );
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    justify-content: center;
+  }
+
+  .table {
+    max-width: 704px;
+    margin: 0;
+    margin-top: 20px;
+  }
+}

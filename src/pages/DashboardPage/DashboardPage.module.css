@@ -31,15 +31,18 @@
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
-  .dashboardContainer {
-    /* flex-direction: row; */
+  .layoutContainer {
+    flex-direction: column;
+  }
+
+  .sideBarContainer {
+    gap: 32px;
+    justify-content: center;
+    flex-direction: row;
   }
 }
 
 @media (max-width: 768px) and (min-width: 425px) {
-  .dashboardContainer {
-    /* flex-direction: row; */
-  }
 }
 
 @media (max-width: 424px) {

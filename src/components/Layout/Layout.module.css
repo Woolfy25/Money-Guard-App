@@ -69,6 +69,9 @@
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+}
+
 @media (max-width: 424px) {
   .logo {
     width: 86px;

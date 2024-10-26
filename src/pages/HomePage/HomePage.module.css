@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   flex: 0 1 auto;
   width: 100%;
   display: flex;
@@ -47,7 +48,7 @@
 
 .tableHead .tableCell {
   color: #fbfbfb;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -81,7 +82,6 @@
 .type {
   padding-left: 15px;
   margin-right: -15px;
-  /* justify-content: center; */
 }
 
 .action {
@@ -127,6 +127,35 @@
     --button-gradient,
     linear-gradient(97deg, #7000ff -16.42%, #9e40ba 97.04%, #ffc727 150.71%)
   );
+}
+
+.addButton {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+}
+
+.svgButton {
+  width: 34px;
+  height: 34px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.addButton:hover .svgButton,
+.addButton:focus .svgButton {
+  transform: rotate(90deg) scale(0.9);
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {

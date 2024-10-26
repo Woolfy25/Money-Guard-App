@@ -20,22 +20,31 @@
 }
 
 .layoutContainer {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  width: 100%;
 }
 
 .sideBarContainer {
+  width: 100%;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
+  .dashboardContainer {
+    height: 100vh;
+  }
+
   .layoutContainer {
     flex-direction: column;
   }
 
   .sideBarContainer {
+    margin: 0px 20px;
+    width: auto;
+    max-width: none;
     gap: 32px;
     justify-content: center;
     flex-direction: row;

@@ -99,7 +99,7 @@
 
 @media (max-width: 1024px) and (min-width: 769px) {
   .container {
-    max-width: 336px;
+    max-width: none;
     border: none;
   }
 

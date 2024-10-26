@@ -143,6 +143,10 @@
   .navigationContainerCurrency {
     display: flex;
   }
+
+  .balanceContainer {
+    border-radius: 15px;
+  }
 }
 
 @media (max-width: 424px) {

@@ -176,3 +176,70 @@
     position: fixed;
   }
 }
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .container {
+    justify-content: center;
+  }
+
+  .table {
+    max-width: none;
+    margin: 0;
+    margin: 0px 10px;
+  }
+
+  .tableHead,
+  .tableRow {
+    padding: 6px;
+  }
+
+  .addButton {
+    right: 20px;
+    position: fixed;
+  }
+
+  .table .tableCell {
+    font-size: 11px;
+  }
+
+  .tableHead .tableCell {
+    color: #fbfbfb;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .sumTitle {
+    font-size: 12px;
+  }
+
+  .table .sum {
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .type {
+    padding-left: 12px;
+    margin-right: -12px;
+  }
+
+  .action {
+    width: 74px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .delete {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 8px;
+  }
+}

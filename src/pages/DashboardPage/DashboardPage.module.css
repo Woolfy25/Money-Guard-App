@@ -52,6 +52,22 @@
 }
 
 @media (max-width: 768px) and (min-width: 425px) {
+  .dashboardContainer {
+    height: 100vh;
+  }
+
+  .layoutContainer {
+    flex-direction: column;
+  }
+
+  .sideBarContainer {
+    margin: 0px 10px;
+    width: auto;
+    max-width: none;
+    gap: 27px;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 424px) {

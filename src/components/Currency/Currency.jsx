@@ -8,14 +8,8 @@ const Currency = () => {
   const { width } = useWindowSize();
   const navigate = useNavigate();
   const location = useLocation();
-  // const isInitialMount = useRef(true);
 
   useEffect(() => {
-    // if (isInitialMount.current) {
-    //   isInitialMount.current = false;
-    //   return;
-    // }
-
     if (location.pathname === "/currency" && width > 768) {
       navigate("/");
     }

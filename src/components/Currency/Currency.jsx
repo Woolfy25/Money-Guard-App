@@ -1,8 +1,26 @@
 import React, { useEffect, useRef } from "react";
+import useWindowSize from "../../hooks/useWidth";
+import { useNavigate, useLocation } from "react-router-dom";
 import css from "./Currency.module.css";
 import { Chart } from "chart.js/auto";
 
 const Currency = () => {
+  const { width } = useWindowSize();
+  const navigate = useNavigate();
+  const location = useLocation();
+  // const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    // if (isInitialMount.current) {
+    //   isInitialMount.current = false;
+    //   return;
+    // }
+
+    if (location.pathname === "/currency" && width > 768) {
+      navigate("/");
+    }
+  }, [width, navigate, location.pathname]);
+
   const chartRef = useRef(null);
 
   useEffect(() => {

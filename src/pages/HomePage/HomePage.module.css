@@ -154,9 +154,16 @@
   transition: transform 0.3s ease;
 }
 
+.addButton:hover,
+.addButton:focus {
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #7000ff -16.42%, #9e40ba 97.04%, #ffc727 150.71%)
+  );
+}
 .addButton:hover .svgButton,
 .addButton:focus .svgButton {
-  transform: rotate(90deg) scale(0.9);
+  transform: scale(1.2);
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {

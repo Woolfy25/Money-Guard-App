@@ -1,11 +1,13 @@
 import React from "react";
 import css from "./Sidebar.module.css";
+import { useNavigate } from "react-router-dom";
 
 import { FaHouse } from "react-icons/fa6";
 import { ImStatsDots } from "react-icons/im";
 import { LuDollarSign } from "react-icons/lu";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   return (
     <div className={css.container}>
       <div className={css.navigation}>
@@ -18,7 +20,12 @@ const Sidebar = () => {
           <p className={css.title}>Statistics</p>
         </div>
         <div className={css.navigationContainerCurrency}>
-          <LuDollarSign className={css.svgs} />
+          <LuDollarSign
+            className={css.svgs}
+            onClick={() => {
+              navigate("/currency");
+            }}
+          />
         </div>
       </div>
       <div className={css.balanceContainer}>

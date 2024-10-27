@@ -13,13 +13,31 @@ const LazyLogin = lazy(() => import("../pages/LoginPage/LoginPage"));
 const LazyRegister = lazy(() => import("../pages/RegisterPage/RegisterPage"));
 const LazyNotFound = lazy(() => import("../pages/NotFound/NotFound"));
 const LazyCurency = lazy(() => import("../components/Currency/Currency"));
+const LazyHomePage = lazy(() => import("../pages/HomePage/HomePage"));
+const LazyMobileHomePage = lazy(() =>
+  import("../components/MobileHomePage/MobileHomePage")
+);
 
 function App() {
   return (
     <div className="App">
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<LazyDashboard />}></Route>
+          <Route
+            path="/"
+            element={
+              <LazyDashboard
+                desktopChildren={<LazyHomePage />}
+                mobileChildren={<LazyMobileHomePage />}
+              />
+            }
+          ></Route>
+          <Route path="/home" element={<LazyDashboard />}></Route>
+          <Route path="/statistics" element={<LazyDashboard />}></Route>
+          <Route
+            path="/currency"
+            element={<LazyDashboard currencyPage={<LazyCurency />} />}
+          ></Route>
           <Route path="/login" element={<LazyLogin />}></Route>
           <Route path="/register" element={<LazyRegister />}></Route>
           <Route path="*" element={<LazyNotFound />}></Route>

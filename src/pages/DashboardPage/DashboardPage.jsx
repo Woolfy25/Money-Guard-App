@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import css from "./DashboardPage.module.css";
 import Layout from "../../components/Layout/Layout";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Currency from "../../components/Currency/Currency";
+import useWindowSize from "../../hooks/useWidth";
 import HomePage from "../HomePage/HomePage";
 import MobileHomePage from "../../components/MobileHomePage/MobileHomePage";
 import Loader from "../../components/Loader/Loader";
 
-// import { Outlet } from "react-router-dom";
-
-function useWindowSize() {
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({ width: window.innerWidth });
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowSize;
-}
-
-const Dashboard = () => {
+const Dashboard = ({ desktopChildren, mobileChildren, currencyPage }) => {
   const { width } = useWindowSize();
   return (
     <div className={css.dashboardContainer}>
@@ -34,11 +16,9 @@ const Dashboard = () => {
       <div className={css.layoutContainer}>
         <div className={css.sideBarContainer}>
           <Sidebar />
-          <Currency />
+          {width >= 768 ? <Currency /> : currencyPage}
         </div>
-        {width >= 425 && <HomePage />}
-        {/* <HomePage /> */}
-        {width <= 424 && <MobileHomePage />}
+        {width >= 425 ? desktopChildren : mobileChildren}
       </div>
     </div>
   );

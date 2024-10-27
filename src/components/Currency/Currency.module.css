@@ -88,9 +88,9 @@
   }
 
   /* DISPLAY NONE CURRENCY */
-  .container {
+  /* .container {
     display: none;
-  }
+  } */
 }
 
 @media (max-width: 424px) {
@@ -123,7 +123,7 @@
   }
 
   /* DISPLAY NONE CURRENCY */
-  .container {
+  /* .container {
     display: none;
-  }
+  } */
 }

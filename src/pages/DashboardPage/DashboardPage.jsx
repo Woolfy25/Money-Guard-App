@@ -4,6 +4,8 @@ import Layout from "../../components/Layout/Layout";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Currency from "../../components/Currency/Currency";
 import AddTransactionModal from "../../components/AddTransaction/AddTransaction";
+import EditTransactionModal from "../../components/EditTransaction/EditTransaction";
+import QuitCheck from "../../components/QuitCheck/QuitCheck";
 
 import useWindowSize from "../../hooks/useWidth";
 import Loader from "../../components/Loader/Loader";
@@ -14,6 +16,8 @@ const Dashboard = ({ desktopChildren, mobileChildren, currencyPage }) => {
     <div className={css.dashboardContainer}>
       <Layout></Layout>
       {/* <AddTransactionModal></AddTransactionModal> */}
+      {/* <EditTransactionModal></EditTransactionModal> */}
+      {/* <QuitCheck></QuitCheck> */}
       <div className={css.layoutContainer}>
         <div className={css.sideBarContainer}>
           <Sidebar />

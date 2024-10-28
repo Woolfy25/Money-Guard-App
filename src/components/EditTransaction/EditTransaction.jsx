@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import css from "./AddTransaction.module.css";
+import css from "./EditTransaction.module.css";
 import MainButton from "../Buttons/MainButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
@@ -9,11 +9,12 @@ import { HiOutlineMinus } from "react-icons/hi2";
 import { GoPlus } from "react-icons/go";
 import { RiArrowDownWideFill } from "react-icons/ri";
 
-const AddTransactionModal = () => {
-  const [isToggled, setIsToggled] = useState(false);
+const EditTransactionModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select category");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [incomeChecked, setIncomeChecked] = useState(false);
+  const [expenseChecked, setExpenseChecked] = useState(false);
 
   const options = [
     "Main expenses",
@@ -33,24 +34,39 @@ const AddTransactionModal = () => {
     setIsOpen(false);
   };
 
-  const handleToggleChange = () => {
-    setIsToggled((prevState) => !prevState);
+  const handleToggleIncome = () => {
+    if (incomeChecked) return;
+    setIncomeChecked((prevState) => !prevState);
+    setExpenseChecked(false);
+  };
+
+  const handleToggleExpense = () => {
+    if (expenseChecked) return;
+    setExpenseChecked((prevState) => !prevState);
+    setIncomeChecked(false);
   };
 
   return (
     <div className={css.overlay}>
       <div className={css.overlayBlur}></div>
       <div className={css.container}>
-        <h2 className={css.title}>Add transaction</h2>
+        <h2 className={css.title}>Edit transaction</h2>
         <div className={css.toggleContainer}>
-          <span
-            className={`${css.toggleOption} ${css.income} ${
-              isToggled ? css.active : ""
-            }`}
+          <label
+            htmlFor="toggleIncome"
+            className={`${css.toggleOption} ${incomeChecked ? css.income : ""}`}
           >
             Income
-          </span>
+          </label>
           <input
+            type="checkbox"
+            id="toggleIncome"
+            checked={incomeChecked}
+            onChange={handleToggleIncome}
+            className={css.toggleIncome}
+          />
+          <span className={css.breaker}>/</span>
+          {/* <input
             type="checkbox"
             id="toggle"
             checked={isToggled}
@@ -63,8 +79,22 @@ const AddTransactionModal = () => {
             ) : (
               <GoPlus className={css.toggleSlider} />
             )}
+          </label> */}
+          <label
+            htmlFor="toggleExpense"
+            className={`${css.toggleOption} ${
+              expenseChecked ? css.expense : ""
+            }`}
+          >
+            Expense
           </label>
-          <span className={`${css.toggleOption} ${css.expense}`}>Expense</span>
+          <input
+            type="checkbox"
+            id="toggleExpense"
+            checked={expenseChecked}
+            onChange={handleToggleExpense}
+            className={css.toggleIncome}
+          />
         </div>
         <form className={css.selectionContainer}>
           <div className={css.dropdown}>
@@ -115,7 +145,7 @@ const AddTransactionModal = () => {
             //   value={formik.values.email}
           />
           <div className={css.buttons}>
-            <MainButton type="Submit" text="ADD" />
+            <MainButton type="Submit" text="SAVE" />
             <SecondaryButton type="button" text="CANCEL" />
           </div>
         </form>
@@ -124,4 +154,4 @@ const AddTransactionModal = () => {
   );
 };
 
-export default AddTransactionModal;
+export default EditTransactionModal;

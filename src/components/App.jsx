@@ -17,6 +17,9 @@ const LazyHomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const LazyMobileHomePage = lazy(() =>
   import("../components/MobileHomePage/MobileHomePage")
 );
+const LazyStatisticsPage = lazy(() =>
+  import("../pages/StatisticsPage/StatisticsPage")
+);
 
 function App() {
   return (
@@ -33,7 +36,10 @@ function App() {
             }
           ></Route>
           <Route path="/home" element={<LazyDashboard />}></Route>
-          <Route path="/statistics" element={<LazyDashboard />}></Route>
+          <Route
+            path="/statistics"
+            element={<LazyDashboard statisticsPage={<LazyStatisticsPage />} />}
+          ></Route>
           <Route
             path="/currency"
             element={<LazyDashboard currencyPage={<LazyCurency />} />}

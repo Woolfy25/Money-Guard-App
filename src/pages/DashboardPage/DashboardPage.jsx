@@ -10,7 +10,12 @@ import QuitCheck from "../../components/QuitCheck/QuitCheck";
 import useWindowSize from "../../hooks/useWidth";
 import Loader from "../../components/Loader/Loader";
 
-const Dashboard = ({ desktopChildren, mobileChildren, currencyPage }) => {
+const Dashboard = ({
+  desktopChildren,
+  mobileChildren,
+  currencyPage,
+  statisticsPage,
+}) => {
   const { width } = useWindowSize();
   return (
     <div className={css.dashboardContainer}>
@@ -24,6 +29,7 @@ const Dashboard = ({ desktopChildren, mobileChildren, currencyPage }) => {
           {width >= 769 ? <Currency /> : currencyPage}
         </div>
         {width >= 425 ? desktopChildren : mobileChildren}
+        {statisticsPage}
       </div>
     </div>
   );

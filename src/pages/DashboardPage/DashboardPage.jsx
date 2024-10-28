@@ -12,12 +12,12 @@ const Dashboard = ({ desktopChildren, mobileChildren, currencyPage }) => {
   const { width } = useWindowSize();
   return (
     <div className={css.dashboardContainer}>
-      <AddTransactionModal></AddTransactionModal>
       <Layout></Layout>
+      {/* <AddTransactionModal></AddTransactionModal> */}
       <div className={css.layoutContainer}>
         <div className={css.sideBarContainer}>
           <Sidebar />
-          {width >= 768 ? <Currency /> : currencyPage}
+          {width >= 769 ? <Currency /> : currencyPage}
         </div>
         {width >= 425 ? desktopChildren : mobileChildren}
       </div>

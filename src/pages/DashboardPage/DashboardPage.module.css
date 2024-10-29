@@ -23,11 +23,12 @@
 .layoutContainer {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
 }
 
 .sideBarContainer {
-  width: 100%;
+  width: 40%;
   max-width: 480px;
   display: flex;
   flex-direction: column;
@@ -79,5 +80,9 @@
   .layoutContainer {
     justify-content: center;
     flex-direction: column;
+  }
+
+  .sideBarContainer {
+    width: 100%;
   }
 }

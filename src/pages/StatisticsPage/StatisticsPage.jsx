@@ -6,9 +6,9 @@ import { RiArrowDownWideFill } from "react-icons/ri";
 
 const StatisticsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Select category");
+  const [selectedOption, setSelectedOption] = useState("Select month");
   const [isOpenYears, setIsOpenYears] = useState(false);
-  const [selectedYear, setSelectedYear] = useState("Select category");
+  const [selectedYear, setSelectedYear] = useState("Select year");
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const toggleDropdownYear = () => setIsOpenYears(!isOpenYears);
@@ -56,19 +56,21 @@ const StatisticsPage = () => {
       <div className={css.statistics}>
         <h2 className={css.title}>Statistics</h2>
         <div className={css.chartContainer}>
-          <PieChart />
+          <div className={css.chartBalance}>
+            <PieChart />
+            <p className={css.balance}>$ 24 000.00</p>
+          </div>
           <div className={css.statsContainer}>
             <div className={css.inputs}>
               <div className={css.dropdown}>
                 <div className={css.dropdownHeader} onClick={toggleDropdown}>
-                  <span>{selectedOption}</span>
+                  <span className={css.selectedOption}>{selectedOption}</span>
                   <RiArrowDownWideFill
                     className={`${css.arrow} ${isOpen ? css.open : ""}`}
                   />
                 </div>
                 {isOpen && (
                   <div className={css.dropdownList}>
-                    <div className={css.overlayBlurDrop}></div>
                     {months.map((month) => (
                       <div
                         key={month}
@@ -88,23 +90,102 @@ const StatisticsPage = () => {
                 >
                   <span>{selectedYear}</span>
                   <RiArrowDownWideFill
-                    className={`${css.arrow} ${isOpen ? css.open : ""}`}
+                    className={`${css.arrow} ${isOpenYears ? css.open : ""}`}
                   />
                 </div>
                 {isOpenYears && (
-                  <div className={css.dropdownList}>
-                    <div className={css.overlayBlurDrop}></div>
-                    {years.map((year) => (
-                      <div
-                        key={year}
-                        className={css.dropdownOption}
-                        onClick={() => handleOptionYears(year)}
-                      >
-                        {year}
-                      </div>
-                    ))}
+                  <div className={css.dropdownContainer}>
+                    <div className={css.dropdownList}>
+                      {years.map((year) => (
+                        <div
+                          key={year}
+                          className={css.dropdownOption}
+                          onClick={() => handleOptionYears(year)}
+                        >
+                          {year}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
+              </div>
+            </div>
+            <div className={css.categoryListContianer}>
+              <div className={css.categoryTitleContainer}>
+                <p className={css.categoryTitle}>Category</p>
+                <p className={css.categoryTitle}>Sum</p>
+              </div>
+              <div className={css.categoryList}>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+                <div className={css.tableRow}>
+                  <div className={css.tableBreaker}>
+                    <div className={css.tableCellColor}></div>
+                    <div className={css.tableCell}>Main expenses</div>
+                  </div>
+                  <div className={css.tableCell}>8 700.00</div>
+                </div>
+              </div>
+              <div className={css.balanceStatsContainer}>
+                <div className={css.balanceStats}>
+                  <p className={css.balanceStatsText}>Expenses:</p>
+                  <p className={`${css.balanceStatsText} ${css.odd}`}>
+                    22 549.24
+                  </p>
+                </div>
+                <div className={css.balanceStats}>
+                  <p className={css.balanceStatsText}>Income:</p>
+                  <p className={`${css.balanceStatsText} ${css.even}`}>
+                    27 350.00
+                  </p>
+                </div>
               </div>
             </div>
           </div>

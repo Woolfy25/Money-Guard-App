@@ -63,6 +63,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .inputs {
   position: absolute;
   display: flex;
@@ -107,7 +108,9 @@
 }
 
 .dropdownContainer {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .dropdownList {
@@ -202,7 +205,7 @@
 
 .balanceStatsContainer {
   width: 100%;
-  margin-top: 25px;
+  margin: 25px 0px;
   display: flex;
   flex-direction: column;
   gap: 19px;
@@ -230,4 +233,105 @@
 
 .even {
   color: #ffb627;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    width: 100%;
+  }
+
+  .statistics {
+    max-width: none;
+    width: 100%;
+  }
+
+  .chartContainer {
+    max-width: none;
+  }
+
+  .statsContainer {
+    max-width: 600px;
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .container {
+    width: 100%;
+  }
+
+  .statistics {
+    max-width: none;
+    width: 100%;
+  }
+
+  .chartContainer {
+    flex-direction: column;
+    max-width: none;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .statsContainer {
+    max-width: none;
+  }
+
+  .dropdown {
+    max-width: 240px;
+  }
+
+  .chartBalance {
+    max-width: 280px;
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 424px) {
+  .container {
+    width: 100%;
+  }
+
+  .statistics {
+    max-width: none;
+    width: 100%;
+  }
+
+  .chartContainer {
+    margin-top: 10px;
+    flex-direction: column;
+    max-width: none;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .statsContainer {
+    max-width: none;
+  }
+
+  .inputs {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .dropdown {
+    max-width: none;
+  }
+
+  .chartBalance {
+    max-width: 280px;
+    max-height: 280px;
+  }
+
+  .categoryListContianer {
+    margin-top: 126px;
+  }
+
+  .categoryList {
+    height: auto;
+  }
 }

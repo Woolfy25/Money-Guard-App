@@ -5,7 +5,9 @@
 .dashboardContainer {
   position: relative;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  align-content: flex-start;
+
   flex-wrap: wrap;
 
   margin: auto;
@@ -23,7 +25,7 @@
 .layoutContainer {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-direction: row;
 }
 
@@ -37,6 +39,7 @@
 @media (max-width: 1024px) and (min-width: 769px) {
   .dashboardContainer {
     height: 100vh;
+    overflow-y: auto;
   }
 
   .layoutContainer {

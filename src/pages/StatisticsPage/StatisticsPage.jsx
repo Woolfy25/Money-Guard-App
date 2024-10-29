@@ -10,8 +10,14 @@ const StatisticsPage = () => {
   const [isOpenYears, setIsOpenYears] = useState(false);
   const [selectedYear, setSelectedYear] = useState("Select year");
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-  const toggleDropdownYear = () => setIsOpenYears(!isOpenYears);
+  const toggleDropdown = () => {
+    if (isOpenYears) setIsOpenYears(false);
+    setIsOpen(!isOpen);
+  };
+  const toggleDropdownYear = () => {
+    if (isOpen) setIsOpen(false);
+    setIsOpenYears(!isOpenYears);
+  };
 
   const handleOptionClick = (month) => {
     setSelectedOption(month);
@@ -70,16 +76,18 @@ const StatisticsPage = () => {
                   />
                 </div>
                 {isOpen && (
-                  <div className={css.dropdownList}>
-                    {months.map((month) => (
-                      <div
-                        key={month}
-                        className={css.dropdownOption}
-                        onClick={() => handleOptionClick(month)}
-                      >
-                        {month}
-                      </div>
-                    ))}
+                  <div className={css.dropdownContainer}>
+                    <div className={css.dropdownList}>
+                      {months.map((month) => (
+                        <div
+                          key={month}
+                          className={css.dropdownOption}
+                          onClick={() => handleOptionClick(month)}
+                        >
+                          {month}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

@@ -2,9 +2,10 @@ import "./App.css";
 import React from "react";
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
+import Loader from "./Loader/Loader";
 
-// import { PrivateRoute } from "../routes/PrivateRoute";
-// import { RestrictedRoute } from "../routes/RestrictedRoute";
+import { PrivateRoute } from "../routes/PrivateRoutes";
+import { RestrictedRoute } from "../routes//RestrictedRoutes";
 
 const LazyDashboard = lazy(() =>
   import("../pages/DashboardPage/DashboardPage")
@@ -24,28 +25,82 @@ const LazyStatisticsPage = lazy(() =>
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route
             path="/"
             element={
-              <LazyDashboard
-                desktopChildren={<LazyHomePage />}
-                mobileChildren={<LazyMobileHomePage />}
+              <PrivateRoute
+                redirectTo="/login"
+                component={
+                  <LazyDashboard
+                    desktopChildren={<LazyHomePage />}
+                    mobileChildren={<LazyMobileHomePage />}
+                  />
+                }
               />
             }
           ></Route>
-          <Route path="/home" element={<LazyDashboard />}></Route>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={
+                  <LazyDashboard
+                    desktopChildren={<LazyHomePage />}
+                    mobileChildren={<LazyMobileHomePage />}
+                  />
+                }
+              />
+            }
+          ></Route>
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={
+                  <LazyDashboard
+                    desktopChildren={<LazyHomePage />}
+                    mobileChildren={<LazyMobileHomePage />}
+                  />
+                }
+              />
+            }
+          ></Route>
           <Route
             path="/statistics"
-            element={<LazyDashboard statisticsPage={<LazyStatisticsPage />} />}
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={
+                  <LazyDashboard statisticsPage={<LazyStatisticsPage />} />
+                }
+              />
+            }
           ></Route>
           <Route
             path="/currency"
-            element={<LazyDashboard currencyPage={<LazyCurency />} />}
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<LazyDashboard currencyPage={<LazyCurency />} />}
+              />
+            }
           ></Route>
-          <Route path="/login" element={<LazyLogin />}></Route>
-          <Route path="/register" element={<LazyRegister />}></Route>
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/" component={<LazyLogin />} />
+            }
+          ></Route>
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute redirectTo="/" component={<LazyRegister />} />
+            }
+          ></Route>
           <Route path="*" element={<LazyNotFound />}></Route>
         </Routes>
       </Suspense>

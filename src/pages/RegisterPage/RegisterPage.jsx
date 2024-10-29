@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { register } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import zxcvbn from "zxcvbn";
+
 // import { useFormik } from "formik";
 import MainButton from "../../components/Buttons/MainButton";
 import SecondaryButton from "../../components/Buttons/SecondaryButton";
@@ -14,6 +17,7 @@ import logo from "../../images/MoneyGuardLogo.png";
 import css from "./RegisterPage.module.css";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -61,9 +65,22 @@ const RegisterForm = () => {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    dispatch(
+      register({
+        username: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+  };
+
   return (
     <div className={css.backgorund}>
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <img src={logo} alt="Money Guard Logo" className={css.logo} />
         <div className={css.divInput}>
           <div className={css.inputContainer}>
@@ -73,8 +90,6 @@ const RegisterForm = () => {
               type="text"
               placeholder="Name"
               className={css.input}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.email}
             />
             <IoPersonSharp className={css.inputIcon} />
           </div>
@@ -85,8 +100,6 @@ const RegisterForm = () => {
               type="email"
               placeholder="E-mail"
               className={css.input}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.email}
             />
             <IoMailSharp className={css.inputIcon} />
           </div>
@@ -99,8 +112,6 @@ const RegisterForm = () => {
               type={isPasswordVisible ? "text" : "password"}
               placeholder="Password"
               className={css.input}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.email}
             />
             <MdLock className={css.inputIcon} />
             <span className={css.toggleIcon} onClick={togglePasswordVisibility}>
@@ -118,8 +129,6 @@ const RegisterForm = () => {
               type={isPasswordVisible ? "text" : "password"}
               placeholder="Password"
               className={css.input}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.email}
             />
             <MdLock className={css.inputIcon} />
             <span className={css.toggleIcon} onClick={togglePasswordVisibility}>

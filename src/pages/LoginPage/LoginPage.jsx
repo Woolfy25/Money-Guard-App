@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
 // import { useFormik } from "formik";
 import MainButton from "../../components/Buttons/MainButton";
 import SecondaryButton from "../../components/Buttons/SecondaryButton";
@@ -12,6 +14,7 @@ import logo from "../../images/MoneyGuardLogo.png";
 import css from "./LoginPage.module.css";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -19,9 +22,21 @@ const LoginForm = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    dispatch(
+      login({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+  };
+
   return (
     <div className={css.backgorund}>
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <img src={logo} alt="Money Guard Logo" className={css.logo} />
         <div className={css.divInput}>
           <div className={css.inputContainer}>

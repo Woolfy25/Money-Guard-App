@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./Sidebar.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { selectUser } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
+import {
+  selectToken,
+  selectIsLoggedIn,
+  selectIsRefreshing,
+} from "../../redux/auth/selectors";
+
+import { useDispatch } from "react-redux";
+import { refreshUser } from "../../redux/auth/operations";
 
 import { FaHouse } from "react-icons/fa6";
 import { ImStatsDots } from "react-icons/im";
@@ -12,6 +20,7 @@ import { LuDollarSign } from "react-icons/lu";
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const isActive = (path) => {
     if (
       (location.pathname === "/" && path === "/home") ||
@@ -21,6 +30,20 @@ const Sidebar = () => {
     }
     return false;
   };
+
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    console.log("Token:", token);
+    console.log("Is Logged In:", isLoggedIn);
+    console.log("Is Refreshing:", isRefreshing);
+
+    if (token && !isLoggedIn && !isRefreshing) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token, isLoggedIn, isRefreshing]);
 
   const user = useSelector(selectUser);
   return (

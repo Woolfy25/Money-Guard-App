@@ -1,0 +1,277 @@
+.container {
+  position: relative;
+  flex: 0 1 auto;
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table {
+  flex: 0 1 auto;
+  max-width: 715px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 16px;
+  margin-top: 46px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 20px;
+  overflow: auto;
+  /* max-height: 425px; */
+  height: 425px;
+}
+
+.tableHead,
+.tableRow {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 12px;
+  color: #fbfbfb;
+}
+
+.tableRow:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+}
+
+.tableHead {
+  border-radius: 8px;
+  background: rgba(82, 59, 126, 0.6);
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+}
+
+.tableCell {
+  color: #fbfbfb;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.tableHead .tableCell {
+  color: #fbfbfb;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tableCell {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: calc(2 * 1.2em);
+  line-height: 1.2em;
+}
+
+.tableRow:nth-child(even) .sum {
+  color: #ff868d;
+}
+
+.tableRow:nth-child(odd) .sum {
+  color: #ffb627;
+}
+
+.sumTitle {
+  font-size: 16px;
+  justify-content: center;
+}
+
+.table .sum {
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.type {
+  padding-left: 15px;
+  margin-right: -15px;
+}
+
+.action {
+  width: 92px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.svg {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.svg:hover,
+.svg:focus {
+  scale: 0.9;
+}
+
+.delete {
+  color: #fbfbfb;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  transition: all 750ms ease;
+  cursor: pointer;
+}
+
+.delete:hover,
+.delete:focus {
+  scale: 0.96;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #7000ff -16.42%, #9e40ba 97.04%, #ffc727 150.71%)
+  );
+}
+
+.addButton {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+}
+
+.svgButton {
+  width: 34px;
+  height: 34px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.addButton:hover,
+.addButton:focus {
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #7000ff -16.42%, #9e40ba 97.04%, #ffc727 150.71%)
+  );
+}
+.addButton:hover .svgButton,
+.addButton:focus .svgButton {
+  transform: scale(1.2);
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .table {
+    height: 360px;
+    max-width: none;
+    margin: 0;
+    margin: 0px 20px;
+    margin-top: 20px;
+  }
+
+  .addButton {
+    position: fixed;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 425px) {
+  .container {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .table {
+    max-width: none;
+    margin: 0;
+    margin: 0px 10px;
+  }
+
+  .tableHead,
+  .tableRow {
+    padding: 6px;
+  }
+
+  .addButton {
+    right: 20px;
+    position: fixed;
+  }
+
+  .tableCell {
+    font-size: 11px;
+  }
+
+  .tableHead .tableCell {
+    color: #fbfbfb;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .sumTitle {
+    font-size: 12px;
+  }
+
+  .table .sum {
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .type {
+    padding-left: 12px;
+    margin-right: -12px;
+  }
+
+  .action {
+    width: 74px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .delete {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 8px;
+  }
+
+  /* .container {
+    display: none;
+  } */
+}
+
+@media (max-width: 424px) {
+  /* .table {
+    max-width: none;
+    margin: 0px 16px;
+    margin-top: 0;
+    font-size: 20px;
+    height: 450px;
+  }
+  .addButton {
+    right: 20px;
+    position: fixed;
+  } */
+
+  .container {
+    width: 100%;
+    display: none;
+  }
+}

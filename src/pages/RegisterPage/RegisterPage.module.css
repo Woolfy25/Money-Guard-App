@@ -83,6 +83,15 @@
   height: 24px;
 }
 
+.inputContainer .input:focus {
+  border-bottom: solid 1px #ffffff;
+  color: #ffffff;
+}
+
+.input:focus ~ .inputIcon {
+  color: #ffffff;
+}
+
 .toggleIcon {
   z-index: 5;
   position: absolute;
@@ -128,6 +137,13 @@
 .toggleIcon:focus .inputPasswordReadable {
   color: #ffffff;
   scale: 0.95;
+}
+
+.error {
+  position: absolute;
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
 @media (max-width: 768px) and (min-width: 425px) {

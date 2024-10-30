@@ -47,7 +47,7 @@ const authSlice = createSlice({
       .addCase(login.pending, handlePending)
       .addCase(login.rejected, handleReject)
       .addCase(logout.fulfilled, (state) => {
-        state.user = { name: null, emai: null, balance: null };
+        state.user = { name: null, email: null, balance: null };
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;

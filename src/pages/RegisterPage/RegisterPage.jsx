@@ -3,6 +3,7 @@ import { register } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import zxcvbn from "zxcvbn";
+import Notiflix from "notiflix";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import * as Yup from "yup";
 
@@ -128,8 +129,15 @@ const RegisterForm = () => {
           password: values.password,
         };
 
-        dispatch(register(submitValues));
-        resetForm();
+        dispatch(register(submitValues))
+          .then(() => {
+            Notiflix.Notify.success("Registration successful!");
+            resetForm();
+          })
+          .catch((error) => {
+            Notiflix.Notify.failure("Registration failed. Please try again.");
+            console.error(error);
+          });
       }}
     >
       {({ isSubmitting, values }) => (

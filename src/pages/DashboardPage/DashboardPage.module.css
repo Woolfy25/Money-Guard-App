@@ -1,11 +1,28 @@
 :root {
   --bakgroundColor: #101010;
+  --bakground: #000000;
+}
+
+.dashboardBackground {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background: url("../../images/gradient-sidebar.png") var(--bakground);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transform: rotate(180deg);
+
+  height: 100vh;
+  overflow: auto;
 }
 
 .dashboardContainer {
+  transform: rotate(180deg);
   position: relative;
   display: flex;
-  /* flex-direction: column; */
   align-content: flex-start;
 
   flex-wrap: wrap;
@@ -20,12 +37,14 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .layoutContainer {
   width: 100%;
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   flex-direction: row;
 }
 

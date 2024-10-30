@@ -1,5 +1,5 @@
 import axios from "axios";
-import { asyncThunkCreator, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://wallet.b.goit.study/";
 

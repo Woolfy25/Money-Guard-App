@@ -48,6 +48,21 @@
   border-radius: 2px;
 }
 
+.activeSvg {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  opacity: 0.4;
+
+  transition: all 250ms ease;
+  border-radius: 2px;
+
+  filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  color: white;
+  opacity: 1;
+  background-color: #734aef;
+}
+
 .balanceContainer {
   width: 100%;
   background: rgba(82, 59, 126, 0.6);
@@ -136,6 +151,13 @@
     border-radius: 6px;
   }
 
+  .activeSvg {
+    width: 44px;
+    height: 44px;
+    padding: 4px;
+    border-radius: 6px;
+  }
+
   .title {
     display: none;
   }
@@ -169,6 +191,13 @@
   }
 
   .svgs {
+    width: 44px;
+    height: 44px;
+    padding: 4px;
+    border-radius: 6px;
+  }
+
+  .activeSvg {
     width: 44px;
     height: 44px;
     padding: 4px;

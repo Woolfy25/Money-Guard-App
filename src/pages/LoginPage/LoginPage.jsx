@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
+import Notiflix from "notiflix";
 
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import * as Yup from "yup";
@@ -47,8 +48,15 @@ const LoginForm = () => {
           password: values.password,
         };
 
-        dispatch(login(submitValues));
-        resetForm();
+        dispatch(login(submitValues))
+          .then(() => {
+            Notiflix.Notify.success("Login successful!");
+            resetForm();
+          })
+          .catch((error) => {
+            Notiflix.Notify.failure("Login failed. Please try again.");
+            console.error(error);
+          });
       }}
     >
       {({ isSubmitting }) => (

@@ -16,6 +16,10 @@ const HomePageList = () => {
     dispatch(getAll());
   }, [dispatch]);
 
+  const deleteTransactionClick = (transactionId) => {
+    dispatch(deleteTransaction(transactionId));
+  };
+
   return (
     <>
       {transactions.map((transaction) => (
@@ -37,7 +41,9 @@ const HomePageList = () => {
             <button
               type="button"
               className={css.delete}
-              onClick={() => dispatch(deleteTransaction(transaction.id))}
+              onClick={() => {
+                deleteTransactionClick(transaction.id);
+              }}
             >
               Delete
             </button>

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import logo from "../../images/MoneyGuardLogo.png";
+import css from "./RegisterPage.module.css";
+
 import { register } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import zxcvbn from "zxcvbn";
 import Notiflix from "notiflix";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
@@ -15,8 +19,6 @@ import { MdLock } from "react-icons/md";
 import { IoPersonSharp } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoMdEye } from "react-icons/io";
-import logo from "../../images/MoneyGuardLogo.png";
-import css from "./RegisterPage.module.css";
 
 const PasswordField = ({
   css,

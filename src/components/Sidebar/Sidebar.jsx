@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import css from "./Sidebar.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { selectUser } from "../../redux/auth/selectors";
+import { selectUserBalance } from "../../redux/user/selectors";
 import { useSelector } from "react-redux";
 import {
   selectToken,
@@ -12,6 +12,7 @@ import {
 
 import { useDispatch } from "react-redux";
 import { refreshUser } from "../../redux/auth/operations";
+import { fetchCurrentUser } from "../../redux/user/operations";
 
 import { FaHouse } from "react-icons/fa6";
 import { ImStatsDots } from "react-icons/im";
@@ -35,17 +36,23 @@ const Sidebar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const token = useSelector(selectToken);
 
+  const userBalance = useSelector(selectUserBalance);
+  // const previousBalanceRef = useRef(userBalance);
+
   useEffect(() => {
-    console.log("Token:", token);
-    console.log("Is Logged In:", isLoggedIn);
-    console.log("Is Refreshing:", isRefreshing);
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
-    if (token && !isLoggedIn && !isRefreshing) {
-      dispatch(refreshUser());
-    }
-  }, [dispatch, token, isLoggedIn, isRefreshing]);
+  // useEffect(() => {
+  //   console.log("Token:", token);
+  //   console.log("Is Logged In:", isLoggedIn);
+  //   console.log("Is Refreshing:", isRefreshing);
+  //   if (token && !isLoggedIn && !isRefreshing) {
+  //     dispatch(refreshUser());
+  //   }
+  // }, [dispatch, token, isLoggedIn, isRefreshing]);
 
-  const user = useSelector(selectUser);
+  // const userBalance = useSelector(selectUserBalance);
   return (
     <div className={css.container}>
       <div className={css.navigation}>
@@ -80,7 +87,7 @@ const Sidebar = () => {
       </div>
       <div className={css.balanceContainer}>
         <p className={css.balanceText}>Your balance</p>
-        <p className={css.balance}>$ {user.balance}</p>
+        <p className={css.balance}>$ {userBalance}</p>
       </div>
     </div>
   );

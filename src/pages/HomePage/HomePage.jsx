@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./HomePage.module.css";
-
+import { useDispatch } from "react-redux";
+import { openAddModal } from "../../redux/modal/modalSlice";
 import HomePageList from "../../components/HomePageList/HomePageList";
 
 import { GoPlus } from "react-icons/go";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
   return (
     <div className={css.container}>
       <ul className={css.table}>
@@ -19,7 +21,11 @@ const HomePage = () => {
         </div>
         <HomePageList></HomePageList>
       </ul>
-      <button type="button" className={css.addButton}>
+      <button
+        type="button"
+        className={css.addButton}
+        onClick={() => dispatch(openAddModal())}
+      >
         <GoPlus className={css.svgButton} />
       </button>
     </div>

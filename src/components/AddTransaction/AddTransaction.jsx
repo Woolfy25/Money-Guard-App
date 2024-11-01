@@ -5,15 +5,19 @@ import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { useDispatch } from "react-redux";
+import { closeAddModal } from "../../redux/modal/modalSlice";
+
 import { HiOutlineMinus } from "react-icons/hi2";
 import { GoPlus } from "react-icons/go";
 import { RiArrowDownWideFill } from "react-icons/ri";
 
-const AddTransactionModal = () => {
+const AddTransactionModal = ({ onClick }) => {
   const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select category");
   const [selectedDate, setSelectedDate] = useState(null);
+  const dispatch = useDispatch();
 
   const options = [
     "Main expenses",
@@ -95,8 +99,6 @@ const AddTransactionModal = () => {
               type="text"
               placeholder="0.00"
               className={css.formElements}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.email}
             />
             <DatePicker
               className={css.formElements}
@@ -111,12 +113,14 @@ const AddTransactionModal = () => {
             type="text"
             placeholder="Comment"
             className={css.formElementsComment}
-            //   onChange={formik.handleChange}
-            //   value={formik.values.email}
           />
           <div className={css.buttons}>
             <MainButton type="Submit" text="ADD" />
-            <SecondaryButton type="button" text="CANCEL" />
+            <SecondaryButton
+              type="button"
+              text="CANCEL"
+              onClick={() => dispatch(closeAddModal())}
+            />
           </div>
         </form>
       </div>

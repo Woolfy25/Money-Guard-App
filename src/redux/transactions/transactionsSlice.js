@@ -52,8 +52,8 @@ const transactionsSlice = createSlice({
       .addCase(editTransaction.pending, handlePending)
       .addCase(editTransaction.rejected, handleReject)
       .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.transactions = state.transaction.filter(
-          (transaction) => transaction.id !== action.payload.id
+        state.transactions = state.transactions.filter(
+          (transaction) => transaction.id !== action.payload
         );
         state.isLoading = false;
       })

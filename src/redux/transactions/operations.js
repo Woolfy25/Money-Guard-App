@@ -99,6 +99,7 @@ export const deleteTransaction = createAsyncThunk(
 
       setAuthHeader(token);
       await axios.delete(`/api/transactions/${transactionId}`);
+      return transactionId;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

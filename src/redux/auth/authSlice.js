@@ -13,10 +13,12 @@ const handlePending = (state) => {
 const handleReject = (state, action) => {
   state.error = action.payload;
   state.isLoading = false;
+  state.isRefreshing = false;
   state.user = { name: null, email: null, balance: null };
   state.token = null;
   state.isLoggedIn = false;
   state.isRefreshing = false;
+  state.token = null;
 };
 
 const authSlice = createSlice({

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import css from "./HomePageList.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { openEditModal } from "../../redux/modal/modalSlice";
 
-import { getAll } from "../../redux/transactions/operations";
+import { getAll, deleteTransaction } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
 import { FaPen } from "react-icons/fa6";
@@ -29,8 +30,15 @@ const HomePageList = () => {
             {transaction.amount}
           </div>
           <div className={css.action}>
-            <FaPen className={css.svg} />
-            <button type="button" className={css.delete}>
+            <FaPen
+              className={css.svg}
+              onClick={() => dispatch(openEditModal())}
+            />
+            <button
+              type="button"
+              className={css.delete}
+              onClick={() => dispatch(deleteTransaction(transaction.id))}
+            >
               Delete
             </button>
           </div>

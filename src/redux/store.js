@@ -2,6 +2,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { authReducer } from "./auth/authSlice";
 import { userReducer } from "./user/userSlice";
 import { transactionsReducer } from "./transactions/transactionsSlice";
+import { modalReducer } from "./modal/modalSlice";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -9,7 +10,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token", "user", "isLoggedIn"],
+  whitelist: ["token", "isLoggedIn"],
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
@@ -19,6 +20,7 @@ const store = configureStore({
     auth: persistedAuthReducer,
     user: userReducer,
     transactions: transactionsReducer,
+    modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

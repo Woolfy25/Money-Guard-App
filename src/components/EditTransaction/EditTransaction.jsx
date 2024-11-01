@@ -5,8 +5,9 @@ import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { HiOutlineMinus } from "react-icons/hi2";
-import { GoPlus } from "react-icons/go";
+import { useDispatch } from "react-redux";
+import { closeEditModal } from "../../redux/modal/modalSlice";
+
 import { RiArrowDownWideFill } from "react-icons/ri";
 
 const EditTransactionModal = () => {
@@ -15,6 +16,7 @@ const EditTransactionModal = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [incomeChecked, setIncomeChecked] = useState(false);
   const [expenseChecked, setExpenseChecked] = useState(false);
+  const dispatch = useDispatch();
 
   const options = [
     "Main expenses",
@@ -146,7 +148,11 @@ const EditTransactionModal = () => {
           />
           <div className={css.buttons}>
             <MainButton type="Submit" text="SAVE" />
-            <SecondaryButton type="button" text="CANCEL" />
+            <SecondaryButton
+              type="button"
+              text="CANCEL"
+              onClick={() => dispatch(closeEditModal())}
+            />
           </div>
         </form>
       </div>

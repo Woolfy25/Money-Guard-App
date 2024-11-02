@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import css from "./AddTransaction.module.css";
 import MainButton from "../Buttons/MainButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
+import Notiflix from "notiflix";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { closeAddModal } from "../../redux/modal/modalSlice";
-import {
-  postTransaction,
-  getTransactionCategories,
-} from "../../redux/transactions/operations";
+import { postTransaction } from "../../redux/transactions/operations";
+import { selectTransCategories } from "../../redux/transactions/selectors";
 
 import { HiOutlineMinus } from "react-icons/hi2";
 import { GoPlus } from "react-icons/go";
@@ -21,11 +20,10 @@ const AddTransactionModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select category");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [amount, setAmount] = useState("");
+  const [comment, setComment] = useState("");
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTransactionCategories());
-  }, [dispatch]);
+  const categories = useSelector(selectTransCategories);
 
   const options = [
     "Main expenses",
@@ -38,7 +36,10 @@ const AddTransactionModal = () => {
     "Leisure",
   ];
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    if (!isToggled) return;
+    setIsOpen(!isOpen);
+  };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -47,6 +48,37 @@ const AddTransactionModal = () => {
 
   const handleToggleChange = () => {
     setIsToggled((prevState) => !prevState);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const selectedCategory = categories.find(
+      (cat) => cat.name === selectedOption
+    );
+    const categoryId = selectedCategory
+      ? selectedCategory.id
+      : categories.find((cat) => cat.name === "Income")?.id;
+    if (!categoryId) {
+      Notiflix.Notify.failure("Please select a valid category.");
+      return;
+    }
+    const transactionData = {
+      transactionDate: selectedDate
+        ? selectedDate.toISOString().split("T")[0]
+        : null,
+      type: isToggled ? "EXPENSE" : "INCOME",
+      categoryId: categoryId,
+      comment: comment,
+      amount: isToggled
+        ? -Math.abs(parseFloat(amount))
+        : Math.abs(parseFloat(amount)),
+    };
+
+    console.log(transactionData);
+
+    dispatch(postTransaction(transactionData));
+    dispatch(closeAddModal());
   };
 
   return (
@@ -81,18 +113,16 @@ const AddTransactionModal = () => {
               )}
             </span>
           </label>
-          {/* <label htmlFor="toggle" className={css.toggleLable}>
-            {isToggled ? (
-              <HiOutlineMinus className={css.toggleSlider} />
-            ) : (
-              <GoPlus className={css.toggleSlider} />
-            )}
-          </label> */}
           <span className={`${css.toggleOption} ${css.expense}`}>Expense</span>
         </div>
-        <form className={css.selectionContainer}>
+        <form className={css.selectionContainer} onSubmit={handleSubmit}>
           <div className={css.dropdown}>
-            <div className={css.dropdownHeader} onClick={toggleDropdown}>
+            <div
+              className={`${css.dropdownHeader} ${
+                isToggled ? "" : css.disabled
+              }`}
+              onClick={toggleDropdown}
+            >
               <span>{selectedOption}</span>
               <RiArrowDownWideFill
                 className={`${css.arrow} ${isOpen ? css.open : ""}`}
@@ -119,6 +149,7 @@ const AddTransactionModal = () => {
               type="text"
               placeholder="0.00"
               className={css.formElements}
+              onChange={(event) => setAmount(event.target.value)}
             />
             <DatePicker
               className={css.formElements}
@@ -133,6 +164,7 @@ const AddTransactionModal = () => {
             type="text"
             placeholder="Comment"
             className={css.formElementsComment}
+            onChange={(event) => setComment(event.target.value)}
           />
           <div className={css.buttons}>
             <MainButton type="Submit" text="ADD" />

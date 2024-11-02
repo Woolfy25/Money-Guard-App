@@ -3,10 +3,15 @@ import css from "./HomePageList.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { openEditModal } from "../../redux/modal/modalSlice";
 
-import { getAll, deleteTransaction } from "../../redux/transactions/operations";
+import {
+  getAll,
+  deleteTransaction,
+  getTransactionCategories,
+} from "../../redux/transactions/operations";
 import {
   selectTransactions,
   selectisTransactionLoading,
+  selectTransCategories,
 } from "../../redux/transactions/selectors";
 
 import Loader from "../../components/Loader/Loader";
@@ -16,11 +21,15 @@ import { FaPen } from "react-icons/fa6";
 const HomePageList = () => {
   const transactions = useSelector(selectTransactions);
   const isLoading = useSelector(selectisTransactionLoading);
-
+  const categories = useSelector(selectTransCategories);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAll());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getTransactionCategories());
   }, [dispatch]);
 
   const deleteTransactionClick = (transactionId) => {
@@ -36,10 +45,14 @@ const HomePageList = () => {
           <div className={`${css.tableCell} ${css.type}`}>
             {transaction.type === "INCOME" ? "+" : "-"}
           </div>
-          <div className={css.tableCell}>{transaction.type}</div>
+          <div className={css.tableCell}>
+            {categories.find(
+              (category) => category.id === transaction.categoryId
+            )?.name || "No category"}
+          </div>
           <div className={css.tableCell}>{transaction.comment}</div>
           <div className={`${css.tableCell} ${css.sum}`}>
-            {transaction.amount}
+            {Math.abs(transaction.amount)}
           </div>
           <div className={css.action}>
             <FaPen

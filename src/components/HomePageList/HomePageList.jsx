@@ -57,7 +57,7 @@ const HomePageList = () => {
           <div className={css.action}>
             <FaPen
               className={css.svg}
-              onClick={() => dispatch(openEditModal())}
+              onClick={() => dispatch(openEditModal(transaction.id))}
             />
             <button
               type="button"

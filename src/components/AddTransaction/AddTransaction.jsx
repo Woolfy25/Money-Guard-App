@@ -47,7 +47,11 @@ const AddTransactionModal = () => {
   };
 
   const handleToggleChange = () => {
-    setIsToggled((prevState) => !prevState);
+    setIsToggled((prevState) => {
+      const newToggledState = !prevState;
+      setSelectedOption("Select category");
+      return newToggledState;
+    });
   };
 
   const handleSubmit = (event) => {
@@ -74,8 +78,6 @@ const AddTransactionModal = () => {
         ? -Math.abs(parseFloat(amount))
         : Math.abs(parseFloat(amount)),
     };
-
-    console.log(transactionData);
 
     dispatch(postTransaction(transactionData));
     dispatch(closeAddModal());
@@ -121,7 +123,7 @@ const AddTransactionModal = () => {
               className={`${css.dropdownHeader} ${
                 isToggled ? "" : css.disabled
               }`}
-              onClick={toggleDropdown}
+              onClick={isToggled ? toggleDropdown : null}
             >
               <span>{selectedOption}</span>
               <RiArrowDownWideFill

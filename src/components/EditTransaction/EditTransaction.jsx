@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import css from "./EditTransaction.module.css";
 import "react-datepicker/dist/react-datepicker.css";
+import Notiflix from "notiflix";
 
 import MainButton from "../Buttons/MainButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeEditModal } from "../../redux/modal/modalSlice";
+import { editTransaction } from "../../redux/transactions/operations";
+import {
+  selectTransCategories,
+  selectTransactions,
+} from "../../redux/transactions/selectors";
+import { selectEditId } from "../../redux/modal/selectors";
 
 import { RiArrowDownWideFill } from "react-icons/ri";
 
@@ -15,9 +22,13 @@ const EditTransactionModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select category");
   const [selectedDate, setSelectedDate] = useState(null);
-  const [incomeChecked, setIncomeChecked] = useState(false);
+  const [incomeChecked, setIncomeChecked] = useState(true);
   const [expenseChecked, setExpenseChecked] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+  const categories = useSelector(selectTransCategories);
+  const transactionId = useSelector(selectEditId);
 
   const options = [
     "Main expenses",
@@ -30,7 +41,10 @@ const EditTransactionModal = () => {
     "Leisure",
   ];
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    if (incomeChecked) return;
+    setIsOpen(!isOpen);
+  };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -40,13 +54,45 @@ const EditTransactionModal = () => {
   const handleToggleIncome = () => {
     if (incomeChecked) return;
     setIncomeChecked((prevState) => !prevState);
+    setSelectedOption("Select category");
     setExpenseChecked(false);
   };
 
   const handleToggleExpense = () => {
     if (expenseChecked) return;
     setExpenseChecked((prevState) => !prevState);
+    setSelectedOption("Select category");
     setIncomeChecked(false);
+  };
+
+  // NEEDS MODIFICATION------------------------------------------------------------------------------------------------------------
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const selectedCategory = categories.find(
+      (cat) => cat.name === selectedOption
+    );
+    const categoryId = selectedCategory
+      ? selectedCategory.id
+      : categories.find((cat) => cat.name === "Income")?.id;
+    if (!categoryId) {
+      Notiflix.Notify.failure("Please select a valid category.");
+      return;
+    }
+    const transactionData = {
+      transactionDate: selectedDate
+        ? selectedDate.toISOString().split("T")[0]
+        : null,
+      type: isToggled ? "EXPENSE" : "INCOME",
+      categoryId: categoryId,
+      comment: comment,
+      amount: isToggled
+        ? -Math.abs(parseFloat(amount))
+        : Math.abs(parseFloat(amount)),
+    };
+
+    dispatch(editTransaction(transactionId, transactionData));
+    dispatch(closeEditModal());
   };
 
   return (
@@ -87,7 +133,12 @@ const EditTransactionModal = () => {
         </div>
         <form className={css.selectionContainer}>
           <div className={css.dropdown}>
-            <div className={css.dropdownHeader} onClick={toggleDropdown}>
+            <div
+              className={`${css.dropdownHeader} ${
+                incomeChecked ? css.disabled : ""
+              }`}
+              onClick={toggleDropdown}
+            >
               <span>{selectedOption}</span>
               <RiArrowDownWideFill
                 className={`${css.arrow} ${isOpen ? css.open : ""}`}

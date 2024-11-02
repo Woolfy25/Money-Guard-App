@@ -75,7 +75,12 @@ const Sidebar = () => {
         {isUserLoading ? (
           <p className={css.balanceTextLoading}>Loading balance...</p>
         ) : (
-          <p className={css.balance}>$ {userBalance.toFixed(2)}</p>
+          <p className={css.balance}>
+            ${" "}
+            {userBalance !== null && userBalance !== undefined
+              ? userBalance.toFixed(2)
+              : "0.00"}
+          </p>
         )}
       </div>
     </div>

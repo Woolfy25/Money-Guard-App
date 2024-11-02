@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import css from "./EditTransaction.module.css";
+import "react-datepicker/dist/react-datepicker.css";
+
 import MainButton from "../Buttons/MainButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 import { useDispatch } from "react-redux";
 import { closeEditModal } from "../../redux/modal/modalSlice";
@@ -68,20 +69,6 @@ const EditTransactionModal = () => {
             className={css.toggleIncome}
           />
           <span className={css.breaker}>/</span>
-          {/* <input
-            type="checkbox"
-            id="toggle"
-            checked={isToggled}
-            onChange={handleToggleChange}
-            className={css.toggleInput}
-          />
-          <label htmlFor="toggle" className={css.toggleLable}>
-            {isToggled ? (
-              <HiOutlineMinus className={css.toggleSlider} />
-            ) : (
-              <GoPlus className={css.toggleSlider} />
-            )}
-          </label> */}
           <label
             htmlFor="toggleExpense"
             className={`${css.toggleOption} ${
@@ -127,8 +114,6 @@ const EditTransactionModal = () => {
               type="text"
               placeholder="0.00"
               className={css.formElements}
-              //   onChange={formik.handleChange}
-              //   value={formik.values.email}
             />
             <DatePicker
               className={css.formElements}
@@ -143,8 +128,6 @@ const EditTransactionModal = () => {
             type="text"
             placeholder="Comment"
             className={css.formElementsComment}
-            //   onChange={formik.handleChange}
-            //   value={formik.values.email}
           />
           <div className={css.buttons}>
             <MainButton type="Submit" text="SAVE" />

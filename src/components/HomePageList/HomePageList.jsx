@@ -4,12 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { openEditModal } from "../../redux/modal/modalSlice";
 
 import { getAll, deleteTransaction } from "../../redux/transactions/operations";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import {
+  selectTransactions,
+  selectisTransactionLoading,
+} from "../../redux/transactions/selectors";
+
+import Loader from "../../components/Loader/Loader";
 
 import { FaPen } from "react-icons/fa6";
 
 const HomePageList = () => {
   const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectisTransactionLoading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +29,7 @@ const HomePageList = () => {
 
   return (
     <>
+      {isLoading ? <Loader /> : null}
       {transactions.map((transaction) => (
         <div className={css.tableRow} key={transaction.id}>
           <div className={css.tableCell}>{transaction.transactionDate}</div>

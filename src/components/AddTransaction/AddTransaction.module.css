@@ -66,7 +66,7 @@
   position: relative;
   width: 80px;
   height: 40px;
-  background: #e0e0e0;
+  background-color: #e0e0e0;
   border-radius: 20px;
   cursor: pointer;
   color: #fff;
@@ -80,15 +80,20 @@
   left: -5px;
   width: 42px;
   height: 42px;
-  background: rgb(255, 182, 39);
+  background-color: rgb(255, 182, 39);
   border-radius: 50%;
-  transition: transform 2s ease;
+  transition: left 1s ease, background-color 1s ease;
   box-shadow: 0 0 10px 3px rgba(255, 182, 39, 0.6);
 }
 
+.toggleSliderSvg {
+  width: 42px;
+  height: 42px;
+}
+
 .toggleInput:checked + .toggleLable .toggleSlider {
-  transform: translateX(50px);
-  background: rgb(255, 134, 141);
+  /* transform: translateX(50px); */
+  background-color: rgb(255, 134, 141);
   box-shadow: 0 0 10px 3px rgba(255, 134, 141, 0.6);
 }
 

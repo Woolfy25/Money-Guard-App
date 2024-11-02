@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./HomePage.module.css";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { openAddModal } from "../../redux/modal/modalSlice";
+
 import HomePageList from "../../components/HomePageList/HomePageList";
+import Loader from "../../components/Loader/Loader";
+import { selectisTransactionLoading } from "../../redux/transactions/selectors";
 
 import { GoPlus } from "react-icons/go";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectisTransactionLoading);
   return (
     <div className={css.container}>
       <ul className={css.table}>

@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import css from "./Sidebar.module.css";
 
 import { useNavigate, useLocation } from "react-router-dom";
-import { selectUserBalance } from "../../redux/user/selectors";
+import {
+  selectUserBalance,
+  selectIsUserLoading,
+} from "../../redux/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchCurrentUser } from "../../redux/user/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
 import { FaHouse } from "react-icons/fa6";
-import { ImStatsDots } from "react-icons/im";
+import { BiStats } from "react-icons/bi";
 import { LuDollarSign } from "react-icons/lu";
 
 const Sidebar = () => {
@@ -29,6 +32,7 @@ const Sidebar = () => {
 
   const transactions = useSelector(selectTransactions);
   const userBalance = useSelector(selectUserBalance);
+  const isUserLoading = useSelector(selectIsUserLoading);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -52,7 +56,7 @@ const Sidebar = () => {
             navigate("/statistics");
           }}
         >
-          <ImStatsDots
+          <BiStats
             className={isActive("/statistics") ? css.activeSvg : css.svgs}
           />
           <p className={css.title}>Statistics</p>
@@ -68,7 +72,11 @@ const Sidebar = () => {
       </div>
       <div className={css.balanceContainer}>
         <p className={css.balanceText}>Your balance</p>
-        <p className={css.balance}>$ {userBalance}</p>
+        {isUserLoading ? (
+          <p className={css.balanceTextLoading}>Loading balance...</p>
+        ) : (
+          <p className={css.balance}>$ {userBalance}</p>
+        )}
       </div>
     </div>
   );

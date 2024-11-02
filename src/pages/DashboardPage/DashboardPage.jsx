@@ -1,11 +1,11 @@
 import React from "react";
 import css from "./DashboardPage.module.css";
+
 import Layout from "../../components/Layout/Layout";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Currency from "../../components/Currency/Currency";
 import AddTransactionModal from "../../components/AddTransaction/AddTransaction";
 import EditTransactionModal from "../../components/EditTransaction/EditTransaction";
-import QuitCheck from "../../components/QuitCheck/QuitCheck";
 
 import { useSelector } from "react-redux";
 

@@ -25,7 +25,7 @@ const LazyStatisticsPage = lazy(() =>
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader style={{ height: "100vh" }} />}>
         <Routes>
           <Route
             path="/"

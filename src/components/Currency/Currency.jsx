@@ -21,20 +21,20 @@ const Currency = () => {
     const ctx = chartRef.current.getContext("2d");
 
     const exchangeRateData = {
-      labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6"], // Time labels, e.g., days or dates
+      labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6"],
       datasets: [
         {
           label: "USD",
-          data: [0.7, 1.12, 0.75, 1, 0.25, 1.1], // Sample USD values
-          borderColor: "rgba(255, 255, 255, 0.60)", // Line color for USD
+          data: [0.7, 1.12, 0.75, 1, 0.25, 1.1],
+          borderColor: "rgba(255, 255, 255, 0.60)",
           backgroundColor: "rgba(255, 255, 255, 0.60)",
           borderWidth: 2,
           fill: true,
         },
         {
           label: "EUR",
-          data: [0.25, 1.08, 1.1, 0.6, 1.15, 0.8], // Sample EUR values
-          borderColor: "#FF868D", // Line color for EUR
+          data: [0.25, 1.08, 1.1, 0.6, 1.15, 0.8],
+          borderColor: "#FF868D",
           backgroundColor: "#FF868D",
           borderWidth: 2,
           fill: true,
@@ -43,24 +43,24 @@ const Currency = () => {
     };
 
     const config = {
-      type: "bar", // Type of chart (line)
+      type: "bar",
       data: exchangeRateData,
       options: {
         scales: {
           x: {
             ticks: {
-              color: "white", // X-axis tick labels color
+              color: "white",
             },
             title: {
-              color: "white", // X-axis title color
+              color: "white",
             },
           },
           y: {
             ticks: {
-              color: "white", // Y-axis tick labels color
+              color: "white",
             },
             title: {
-              color: "white", // Y-axis title color
+              color: "white",
             },
           },
         },
@@ -73,7 +73,7 @@ const Currency = () => {
             position: "top",
           },
         },
-        responsive: true, // Makes the chart responsive
+        responsive: true,
         maintainAspectRatio: false,
       },
     };

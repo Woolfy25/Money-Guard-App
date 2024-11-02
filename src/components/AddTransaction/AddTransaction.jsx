@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import css from "./AddTransaction.module.css";
 import MainButton from "../Buttons/MainButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeAddModal } from "../../redux/modal/modalSlice";
+import {
+  postTransaction,
+  getTransactionCategories,
+} from "../../redux/transactions/operations";
 
 import { HiOutlineMinus } from "react-icons/hi2";
 import { GoPlus } from "react-icons/go";
 import { RiArrowDownWideFill } from "react-icons/ri";
 
-const AddTransactionModal = ({ onClick }) => {
+const AddTransactionModal = () => {
   const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select category");
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTransactionCategories());
+  }, [dispatch]);
 
   const options = [
     "Main expenses",
@@ -62,12 +70,24 @@ const AddTransactionModal = ({ onClick }) => {
             className={css.toggleInput}
           />
           <label htmlFor="toggle" className={css.toggleLable}>
+            <span
+              className={css.toggleSlider}
+              style={{ left: isToggled ? "45px" : "-5px" }}
+            >
+              {isToggled ? (
+                <HiOutlineMinus className={css.toggleSliderSvg} />
+              ) : (
+                <GoPlus className={css.toggleSliderSvg} />
+              )}
+            </span>
+          </label>
+          {/* <label htmlFor="toggle" className={css.toggleLable}>
             {isToggled ? (
               <HiOutlineMinus className={css.toggleSlider} />
             ) : (
               <GoPlus className={css.toggleSlider} />
             )}
-          </label>
+          </label> */}
           <span className={`${css.toggleOption} ${css.expense}`}>Expense</span>
         </div>
         <form className={css.selectionContainer}>

@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PieChart from "../../components/Chart/Chart";
 import css from "./StatisticsPage.module.css";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactionSummaries } from "../../redux/transactions/operations";
+import { selectUserBalance } from "../../redux/user/selectors";
+import { selectTransSummary } from "../../redux/transactions/selectors";
 
 import { RiArrowDownWideFill } from "react-icons/ri";
 
@@ -9,6 +14,11 @@ const StatisticsPage = () => {
   const [selectedOption, setSelectedOption] = useState("Select month");
   const [isOpenYears, setIsOpenYears] = useState(false);
   const [selectedYear, setSelectedYear] = useState("Select year");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTransactionSummaries());
+  }, [selectedOption, selectedYear, dispatch]);
 
   const toggleDropdown = () => {
     if (isOpenYears) setIsOpenYears(false);
@@ -28,6 +38,9 @@ const StatisticsPage = () => {
     setSelectedYear(year);
     setIsOpenYears(false);
   };
+
+  const userBalance = useSelector(selectUserBalance);
+  const summary = useSelector(selectTransSummary);
 
   const months = [
     "January",
@@ -64,7 +77,12 @@ const StatisticsPage = () => {
         <div className={css.chartContainer}>
           <div className={css.chartBalance}>
             <PieChart />
-            <p className={css.balance}>$ 24 000.00</p>
+            <p className={css.balance}>
+              ${" "}
+              {userBalance !== null && userBalance !== undefined
+                ? userBalance.toFixed(2)
+                : "0.00"}
+            </p>
           </div>
           <div className={css.statsContainer}>
             <div className={css.inputs}>
@@ -185,13 +203,19 @@ const StatisticsPage = () => {
                 <div className={css.balanceStats}>
                   <p className={css.balanceStatsText}>Expenses:</p>
                   <p className={`${css.balanceStatsText} ${css.odd}`}>
-                    22 549.24
+                    {summary.expenseSummary !== null &&
+                    summary.expenseSummary !== undefined
+                      ? Math.abs(summary.expenseSummary).toFixed(2)
+                      : "0.00"}
                   </p>
                 </div>
                 <div className={css.balanceStats}>
                   <p className={css.balanceStatsText}>Income:</p>
                   <p className={`${css.balanceStatsText} ${css.even}`}>
-                    27 350.00
+                    {summary.incomeSummary !== null &&
+                    summary.incomeSummary !== undefined
+                      ? summary.incomeSummary.toFixed(2)
+                      : "0.00"}
                   </p>
                 </div>
               </div>

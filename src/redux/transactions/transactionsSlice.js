@@ -5,6 +5,7 @@ import {
   editTransaction,
   deleteTransaction,
   getTransactionCategories,
+  getTransactionSummaries,
 } from "./operations";
 
 const handlePending = (state) => {
@@ -20,6 +21,7 @@ const handleReject = (state, action) => {
 const transactionsSlice = createSlice({
   name: "transactions",
   initialState: {
+    summary: [],
     categories: [],
     transactions: [],
     isLoading: false,
@@ -64,7 +66,13 @@ const transactionsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getTransactionCategories.pending, handlePending)
-      .addCase(getTransactionCategories.rejected, handleReject);
+      .addCase(getTransactionCategories.rejected, handleReject)
+      .addCase(getTransactionSummaries.fulfilled, (state, action) => {
+        state.summary = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getTransactionSummaries.pending, handlePending)
+      .addCase(getTransactionSummaries.rejected, handleReject);
   },
 });
 

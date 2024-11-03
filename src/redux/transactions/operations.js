@@ -105,3 +105,22 @@ export const deleteTransaction = createAsyncThunk(
     }
   }
 );
+
+export const getTransactionSummaries = createAsyncThunk(
+  "transactions/getTransactionSummaries",
+  async (_, thunkApi) => {
+    try {
+      const state = thunkApi.getState();
+      const token = selectToken(state);
+      if (!token) {
+        return thunkApi.rejectWithValue("No token found");
+      }
+
+      setAuthHeader(token);
+      const response = await axios.get("/api/transactions-summary");
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

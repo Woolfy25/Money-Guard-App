@@ -63,7 +63,12 @@ const LoginForm = () => {
       {({ isSubmitting }) => (
         <div className={css.backgorund}>
           <Form className={css.form}>
-            <img src={logo} alt="Money Guard Logo" className={css.logo} />
+            <img
+              src={logo}
+              alt="Money Guard Logo"
+              className={css.logo}
+              loading="lazy"
+            />
             <div className={css.divInput}>
               <div className={css.inputContainer}>
                 <Field

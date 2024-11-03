@@ -32,7 +32,12 @@ const Layout = () => {
 
   return (
     <div className={css.container}>
-      <img className={css.logo} src={logo} alt="Money Guard Logo" />
+      <img
+        className={css.logo}
+        src={logo}
+        alt="Money Guard Logo"
+        loading="lazy"
+      />
       <div className={css.infoContainer}>
         <p className={css.name}>{name.username}</p>
         <PiLineVertical className={css.verticalSvg} />

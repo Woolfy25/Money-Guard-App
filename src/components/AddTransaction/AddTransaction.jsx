@@ -34,6 +34,8 @@ const AddTransactionModal = () => {
     "Household products",
     "Education",
     "Leisure",
+    "Entertainment",
+    "Other expenses",
   ];
 
   const toggleDropdown = () => {

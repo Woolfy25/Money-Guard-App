@@ -108,7 +108,7 @@ export const deleteTransaction = createAsyncThunk(
 
 export const getTransactionSummaries = createAsyncThunk(
   "transactions/getTransactionSummaries",
-  async (_, thunkApi) => {
+  async ({ month, year } = {}, thunkApi) => {
     try {
       const state = thunkApi.getState();
       const token = selectToken(state);
@@ -117,7 +117,14 @@ export const getTransactionSummaries = createAsyncThunk(
       }
 
       setAuthHeader(token);
-      const response = await axios.get("/api/transactions-summary");
+
+      const params = {};
+      if (month) params.month = month;
+      if (year) params.year = year;
+
+      const response = await axios.get("/api/transactions-summary", {
+        params,
+      });
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

@@ -2,23 +2,45 @@ import React from "react";
 import css from "./Chart.module.css";
 import { Doughnut } from "react-chartjs-2";
 
+import { useSelector } from "react-redux";
+import { selectTransSummary } from "../../redux/transactions/selectors";
+
 const PieChart = () => {
+  const summary = useSelector(selectTransSummary);
+  const categoriesArray = summary?.categoriesSummary
+    ? [...summary.categoriesSummary]
+    : [];
+  const hasData = categoriesArray.length > 0;
+
+  const labels = hasData
+    ? categoriesArray.map((category) => category.name)
+    : ["No Data Available"];
+  const dataValues = hasData
+    ? categoriesArray.map((category) => category.total)
+    : [1];
+
   const data = {
-    labels: ["Red", "Blue", "Yellow"],
+    labels: labels,
     datasets: [
       {
-        label: "Dataset Label",
-        data: [300, 50, 100, 60, 500, 80],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.8)",
-          "rgba(54, 162, 235, 0.8)",
-          "rgba(255, 206, 86, 0.8)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-        ],
+        label: "Data",
+        data: dataValues,
+        backgroundColor: hasData
+          ? [
+              "#FED057",
+              "#FFD8D0",
+              "#FD9498",
+              "#C5BAFF",
+              "#6E78E8",
+              "#4A56E2",
+              "#81E1FF",
+              "#24CCA7",
+              "#00AD84",
+              "#33A1FF",
+              "#a63838",
+            ]
+          : ["#D3D3D3"],
+        borderColor: ["rgba(255, 255, 255, 1)"],
         borderWidth: 1,
       },
     ],

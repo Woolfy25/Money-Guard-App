@@ -200,7 +200,7 @@
   width: 24px;
   height: 24px;
   border-radius: 2px;
-  background: #fed057;
+  /* background: #fed057; */
 }
 
 .balanceStatsContainer {
@@ -233,6 +233,32 @@
 
 .even {
   color: #ffb627;
+}
+
+.noCategory {
+  color: #fbfbfb;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.resetButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  font-size: 16px;
+  background: transparent;
+  color: #fbfbfb;
+  cursor: pointer;
+  border-radius: 8px;
+  border: solid 1px rgba(255, 255, 255, 0.4);
+}
+
+.chartBreaker {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {

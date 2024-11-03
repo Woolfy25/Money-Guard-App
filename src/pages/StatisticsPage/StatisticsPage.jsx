@@ -16,8 +16,18 @@ const StatisticsPage = () => {
   const [selectedYear, setSelectedYear] = useState("Select year");
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getTransactionSummaries());
+  // }, [dispatch]);
+
   useEffect(() => {
-    dispatch(getTransactionSummaries());
+    const monthIndex =
+      selectedOption !== "Select month"
+        ? months.indexOf(selectedOption) + 1
+        : undefined;
+    const yearValue = selectedYear !== "Select year" ? selectedYear : undefined;
+
+    dispatch(getTransactionSummaries({ month: monthIndex, year: yearValue }));
   }, [selectedOption, selectedYear, dispatch]);
 
   const toggleDropdown = () => {
@@ -39,7 +49,13 @@ const StatisticsPage = () => {
     setIsOpenYears(false);
   };
 
-  const userBalance = useSelector(selectUserBalance);
+  const resetSelections = () => {
+    setSelectedOption("Select month");
+    setSelectedYear("Select year");
+    dispatch(getTransactionSummaries());
+  };
+
+  const userBalance = useSelector(selectTransSummary);
   const summary = useSelector(selectTransSummary);
 
   const months = [
@@ -69,20 +85,45 @@ const StatisticsPage = () => {
     "2023",
     "2024",
     "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+  ];
+
+  const colors = [
+    "#FED057",
+    "#FFD8D0",
+    "#FD9498",
+    "#C5BAFF",
+    "#6E78E8",
+    "#4A56E2",
+    "#81E1FF",
+    "#24CCA7",
+    "#00AD84",
+    "#33A1FF",
+    "#a63838",
   ];
   return (
     <div className={css.container}>
       <div className={css.statistics}>
         <h2 className={css.title}>Statistics</h2>
         <div className={css.chartContainer}>
-          <div className={css.chartBalance}>
-            <PieChart />
-            <p className={css.balance}>
-              ${" "}
-              {userBalance !== null && userBalance !== undefined
-                ? userBalance.toFixed(2)
-                : "0.00"}
-            </p>
+          <div className={css.chartBreaker}>
+            <div className={css.chartBalance}>
+              <PieChart />
+              <p className={css.balance}>
+                ${" "}
+                {userBalance.periodTotal !== null &&
+                userBalance.periodTotal !== undefined
+                  ? userBalance.periodTotal.toFixed(2)
+                  : "0.00"}
+              </p>
+            </div>
+            <button onClick={resetSelections} className={css.resetButton}>
+              Reset data
+            </button>
           </div>
           <div className={css.statsContainer}>
             <div className={css.inputs}>
@@ -142,63 +183,29 @@ const StatisticsPage = () => {
                 <p className={css.categoryTitle}>Sum</p>
               </div>
               <div className={css.categoryList}>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
-                <div className={css.tableRow}>
-                  <div className={css.tableBreaker}>
-                    <div className={css.tableCellColor}></div>
-                    <div className={css.tableCell}>Main expenses</div>
-                  </div>
-                  <div className={css.tableCell}>8 700.00</div>
-                </div>
+                {summary.categoriesSummary ? (
+                  summary.categoriesSummary.map((category, index) => (
+                    <div className={css.tableRow} key={index}>
+                      <div className={css.tableBreaker}>
+                        <div
+                          className={css.tableCellColor}
+                          style={{
+                            backgroundColor: colors[index % colors.length],
+                          }}
+                        ></div>
+                        <div className={css.tableCell}>{category.name}</div>
+                      </div>
+
+                      <div className={css.tableCell}>
+                        {Math.abs(category.total).toFixed(2)}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className={css.noCategory}>No category data available.</p>
+                )}
               </div>
+
               <div className={css.balanceStatsContainer}>
                 <div className={css.balanceStats}>
                   <p className={css.balanceStatsText}>Expenses:</p>

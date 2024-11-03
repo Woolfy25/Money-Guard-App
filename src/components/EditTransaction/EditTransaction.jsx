@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import css from "./EditTransaction.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Notiflix from "notiflix";
@@ -19,6 +19,7 @@ import { selectEditId } from "../../redux/modal/selectors";
 import { RiArrowDownWideFill } from "react-icons/ri";
 
 const EditTransactionModal = () => {
+  const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select category");
   const [selectedDate, setSelectedDate] = useState(null);
@@ -28,7 +29,32 @@ const EditTransactionModal = () => {
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector(selectTransCategories);
+  const transactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectEditId);
+
+  useEffect(() => {
+    const transaction = transactions.find(
+      (trans) => trans.id === transactionId
+    );
+    if (transaction) {
+      setSelectedDate(new Date(transaction.transactionDate));
+      setAmount(Math.abs(transaction.amount).toString());
+      setComment(transaction.comment);
+      setSelectedOption(
+        categories.find((cat) => cat.id === transaction.categoryId)?.name ||
+          "Select category"
+      );
+      if (transaction.type === "EXPENSE") {
+        setExpenseChecked(true);
+        setIncomeChecked(false);
+        setIsToggled(true);
+      } else {
+        setIncomeChecked(true);
+        setExpenseChecked(false);
+        setIsToggled(false);
+      }
+    }
+  }, [transactionId, transactions, categories]);
 
   const options = [
     "Main expenses",
@@ -51,21 +77,6 @@ const EditTransactionModal = () => {
     setIsOpen(false);
   };
 
-  const handleToggleIncome = () => {
-    if (incomeChecked) return;
-    setIncomeChecked((prevState) => !prevState);
-    setSelectedOption("Select category");
-    setExpenseChecked(false);
-  };
-
-  const handleToggleExpense = () => {
-    if (expenseChecked) return;
-    setExpenseChecked((prevState) => !prevState);
-    setSelectedOption("Select category");
-    setIncomeChecked(false);
-  };
-
-  // NEEDS MODIFICATION------------------------------------------------------------------------------------------------------------
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -91,7 +102,7 @@ const EditTransactionModal = () => {
         : Math.abs(parseFloat(amount)),
     };
 
-    dispatch(editTransaction(transactionId, transactionData));
+    dispatch(editTransaction({ transactionId, transaction: transactionData }));
     dispatch(closeEditModal());
   };
 
@@ -110,8 +121,6 @@ const EditTransactionModal = () => {
           <input
             type="checkbox"
             id="toggleIncome"
-            checked={incomeChecked}
-            onChange={handleToggleIncome}
             className={css.toggleIncome}
           />
           <span className={css.breaker}>/</span>
@@ -126,12 +135,10 @@ const EditTransactionModal = () => {
           <input
             type="checkbox"
             id="toggleExpense"
-            checked={expenseChecked}
-            onChange={handleToggleExpense}
             className={css.toggleIncome}
           />
         </div>
-        <form className={css.selectionContainer}>
+        <form className={css.selectionContainer} onSubmit={handleSubmit}>
           <div className={css.dropdown}>
             <div
               className={`${css.dropdownHeader} ${
@@ -164,7 +171,9 @@ const EditTransactionModal = () => {
               name="sum"
               type="text"
               placeholder="0.00"
+              value={amount}
               className={css.formElements}
+              onChange={(event) => setAmount(event.target.value)}
             />
             <DatePicker
               className={css.formElements}
@@ -179,6 +188,8 @@ const EditTransactionModal = () => {
             type="text"
             placeholder="Comment"
             className={css.formElementsComment}
+            onChange={(event) => setComment(event.target.value)}
+            value={comment}
           />
           <div className={css.buttons}>
             <MainButton type="Submit" text="SAVE" />

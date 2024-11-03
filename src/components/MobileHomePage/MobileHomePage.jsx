@@ -83,7 +83,7 @@ const MobileHomePage = () => {
               </button>
               <FaPen
                 className={css.svg}
-                onClick={() => dispatch(openEditModal())}
+                onClick={() => dispatch(openEditModal(transaction.id))}
               />
             </div>
           </div>
